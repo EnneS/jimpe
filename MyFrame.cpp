@@ -1,0 +1,86 @@
+#include "MyFrame.h"
+
+
+MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
+: wxFrame(NULL, wxID_ANY, title, pos, size)
+{
+    m_panel = new MyPanel(this);
+
+	wxMenu *menuFile = new wxMenu ;
+	menuFile->Append(ID_Open, wxT("Open \tCtrl-O"), _("Ouvrir une image")) ;
+	Bind(wxEVT_MENU, &MyFrame::OnOpen, this, ID_Open) ;
+
+	menuFile->Append(ID_Save, wxT("Save \tCtrl-S"), _("Enregistrer sous")) ;
+	Bind(wxEVT_MENU, &MyFrame::OnSave, this, ID_Save) ;
+
+    menuFile->AppendSeparator();
+
+    menuFile->Append(wxID_ABOUT) ;
+	Bind(wxEVT_MENU, &MyFrame::OnAbout, this, wxID_ABOUT) ;
+
+	menuFile->Append(wxID_EXIT) ;
+	Bind(wxEVT_MENU, &MyFrame::OnExit, this, wxID_EXIT) ;
+
+    wxMenu *menuProcess = new wxMenu ;
+	menuProcess->Append(ID_MiroirH, wxT("Miroir horizontal \tCtrl-H"), _("Applique un effet mirroir horizontal")) ;
+	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_MiroirH) ;
+    menuProcess->Append(ID_MiroirV, wxT("Miroir vertical \tCtrl-V"), _("Applique un effet mirroir vertical")) ;
+	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_MiroirV) ;
+	menuProcess->Append(ID_Blur, wxT("Flou \tCtrl-F"), _("Applique un effet de flou")) ;
+	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Blur);
+    menuProcess->Append(ID_Rotate, wxT("Rotation \tCtrl-R"), _("Applique une rotation a l'image")) ;
+	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Rotate);
+    menuProcess->Append(ID_Negative, wxT("Negatif \tCtrl-N"), _("Negativer l\'image")) ;
+	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Negative);
+    menuProcess->Append(ID_Threshold, wxT("Seuillage \tCtrl-T"), _("Applique un seuillage a l\'image")) ;
+	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Threshold);
+    menuProcess->Append(ID_Posterize, wxT("Postérisation \tCtrl-P"), _("Applique une posterisation a l\'image")) ;
+	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Posterize);
+
+
+	wxMenuBar *menuBar = new wxMenuBar ;
+	menuBar->Append( menuFile, wxT("File" )) ;
+    menuBar->Append( menuProcess, wxT("Process" )) ;
+	SetMenuBar(menuBar) ;
+
+	CreateStatusBar();
+    SetStatusText(wxT("Mon visualiseur d'image"));
+}
+
+void MyFrame::OnOpen(wxCommandEvent& event)
+{
+    m_panel->openImage(wxT(""));
+}
+
+void MyFrame::OnExit(wxCommandEvent& event)
+{
+	Close( true );
+}
+
+void MyFrame::OnSave(wxCommandEvent& event)
+{
+	wxString fileName;
+	wxString str;
+	fileName = wxSaveFileSelector(wxT("Sauvegarder"), wxT(""), str);
+	if(fileName != "") {
+        m_panel->saveImage(fileName);
+	}
+}
+
+void MyFrame::OnAbout(wxCommandEvent& event)
+{
+	wxLogMessage(wxT("Auteur : moi !!!"));
+}
+
+void MyFrame::OnProcess(wxCommandEvent& event)
+{
+    switch(event.GetId()){
+        case ID_MiroirH : m_panel->Miroir(true); break;
+        case ID_MiroirV : m_panel->Miroir(false); break;
+        case ID_Blur : m_panel->Blur(); break;
+        case ID_Rotate : m_panel->Rotate(); break;
+        case ID_Negative : m_panel->Negative(); break;
+        case ID_Threshold : m_panel->Threshold(); break;
+        case ID_Posterize : m_panel->Posterize(); break;
+    }
+}
