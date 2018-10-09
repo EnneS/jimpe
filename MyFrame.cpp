@@ -6,6 +6,32 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 {
     m_panel = new MyPanel(this);
 
+    /*
+    * TOOLBAR
+    */
+
+    m_toolbar = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTB_VERTICAL);
+
+    // Images des tools
+    wxBitmap negativeIcon(wxT("negative.png"), wxBITMAP_TYPE_PNG);
+    wxBitmap mirrorHIcon(wxT("mirroirh.png"), wxBITMAP_TYPE_PNG);
+    wxBitmap mirrorVIcon(wxT("mirrorv.png"), wxBITMAP_TYPE_PNG);
+    wxBitmap rotateIcon(wxT("rotate.png"), wxBITMAP_TYPE_PNG);
+
+    // Ajout des tools à la toolbar
+    m_toolbar->AddTool(ID_Negative, wxT("Negatif"), negativeIcon);
+    m_toolbar->AddTool(ID_MiroirH, wxT("Miroir Vertical"), mirrorHIcon);
+    m_toolbar->AddTool(ID_MiroirV, wxT("Miroir Horizontal"), mirrorVIcon);
+    m_toolbar->AddTool(ID_Rotate, wxT("Rotation"), rotateIcon);
+
+    // Activation de la toolbar
+    m_toolbar->Realize();
+    SetToolBar(m_toolbar);
+
+    /*
+    * MENUBAR
+    */
+
 	wxMenu *menuFile = new wxMenu ;
 	menuFile->Append(ID_Open, wxT("Open \tCtrl-O"), _("Ouvrir une image")) ;
 	Bind(wxEVT_MENU, &MyFrame::OnOpen, this, ID_Open) ;

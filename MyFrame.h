@@ -15,6 +15,7 @@ private:
     void OnProcess(wxCommandEvent& event);
 
     MyPanel *m_panel; // the panel inside the main frame
+    wxToolBar *m_toolbar;
 };
 
 enum	// énumération. Elle gère la numérotation automatiquement

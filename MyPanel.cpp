@@ -162,5 +162,7 @@ void MyPanel::showStream(){
         cv::cvtColor(frame, frame, CV_BGR2RGB, 3);
         m_image = new MyImage(frame.cols, frame.rows);
         std::memcpy(m_image->GetData(), frame.data, frame.cols * frame.rows * 3);
+
+        Refresh();
     }
 }
