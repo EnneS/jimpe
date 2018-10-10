@@ -15,6 +15,7 @@ MyPanel::MyPanel(wxWindow *parent) : wxPanel(parent), stream(0){
     cv::Mat m;
     stream >> m;
 }
+
 MyPanel::~MyPanel(void){
     if(m_image){
         delete m_image;
@@ -108,6 +109,8 @@ void MyPanel::Negative(){
         wxMessageDialog error(this, "Pas d'image ouverte");
         error.ShowModal();
     }
+
+
 }
 
 void MyPanel::Threshold(){
@@ -159,7 +162,6 @@ void MyPanel::showStream(){
     if(stream.isOpened()){
         cv::Mat frame;
         cv::Mat trans_avg = cv::Mat::eye(2,3,CV_64FC1);
-https://stackoverflow.com/questions/21622608/video-stabilization-using-opencv
         stream >> frame;
         cv::cvtColor(frame, frame, CV_BGR2RGB, 3);
         cv::Mat trans;
@@ -168,9 +170,9 @@ https://stackoverflow.com/questions/21622608/video-stabilization-using-opencv
             trans=estimateRigidTransform(frame,prev_frame,0);
             trans(cv::Range(0,2),cv::Range(0,2))=cv::Mat::eye(2,2,CV_64FC1);
             trans_avg+=(trans-trans_avg)/2.0;
-            warpAffine(frame,warped,trans_avg,Size( frame.cols, frame.rows));
+//            warpAffine(frame,warped,trans_avg,Size( frame.cols, frame.rows));
 
-            imshow("Camw",warped);
+  //          imshow("Camw",warped);
         }
 
         m_image = new MyImage(frame.cols, frame.rows);

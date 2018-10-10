@@ -1,11 +1,12 @@
 #include "MyFrame.h"
 
+wxDEFINE_EVENT(DO_ROTATE, wxCommandEvent);
 
 MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 : wxFrame(NULL, wxID_ANY, title, pos, size)
 {
     m_panel = new MyPanel(this);
-
+    m_panel->SetBackgroundColour(wxColour(wxT("RED")));
     /*
     * TOOLBAR
     */
@@ -101,12 +102,24 @@ void MyFrame::OnAbout(wxCommandEvent& event)
 void MyFrame::OnProcess(wxCommandEvent& event)
 {
     switch(event.GetId()){
-        case ID_MiroirH : m_panel->Miroir(true); break;
+        case ID_MiroirH :
+            m_panel->Miroir(true);
+            break;
         case ID_MiroirV : m_panel->Miroir(false); break;
         case ID_Blur : m_panel->Blur(); break;
-        case ID_Rotate : m_panel->Rotate(); break;
+        case ID_Rotate : {
+                m_process_panel= new RotatePanel(this);
+                m_panel->SetPosition(wxPoint(m_process_panel->GetSize().GetWidth(),0));
+                Bind(DO_ROTATE, &MyFrame::OnRotate, this) ;
+                Fit();
+            break;
+        }
         case ID_Negative : m_panel->Negative(); break;
         case ID_Threshold : m_panel->Threshold(); break;
         case ID_Posterize : m_panel->Posterize(); break;
     }
+}
+
+void MyFrame::OnRotate(wxCommandEvent& event){
+    m_panel->Rotate();
 }

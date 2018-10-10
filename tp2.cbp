@@ -59,6 +59,8 @@
 		<Unit filename="MyRotateDialog.h" />
 		<Unit filename="MyThresholdDialog.cpp" />
 		<Unit filename="MyThresholdDialog.h" />
+		<Unit filename="RotatePanel.cpp" />
+		<Unit filename="RotatePanel.h" />
 		<Unit filename="WebcamStream.cpp" />
 		<Unit filename="WebcamStream.h" />
 		<Unit filename="tp2App.cpp" />

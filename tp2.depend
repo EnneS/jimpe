@@ -1704,14 +1704,15 @@
 1538392775 /users/info/etu-s4/souliern/M4105C/codeblocks/tp2/include/MyPosterizeDialog.h
 	<wx/wx.h>
 
-1539088369 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyFrame.cpp
+1539164379 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyFrame.cpp
 	"MyFrame.h"
 
-1539083317 /users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyFrame.h
+1539165014 /users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyFrame.h
 	"MyPanel.h"
+	"RotatePanel.h"
 	<wx/wx.h>
 
-1538464926 /users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyPanel.h
+1539089711 /users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyPanel.h
 	<wx/wx.h>
 	"MyImage.h"
 	"MyThresholdDialog.h"
@@ -1722,7 +1723,7 @@
 1538394736 /users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyPosterizeDialog.h
 	<wx/wx.h>
 
-1539089070 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyPanel.cpp
+1539160614 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyPanel.cpp
 	"MyPanel.h"
 	<thread>
 	<chrono>
@@ -1800,4 +1801,10 @@
 
 1538480583 source:/users/info/etu-s4/royetju/Jimpe/WebcamStream.cpp
 	"WebcamStream.h"
+
+1539165018 /users/info/etu-s4/souliern/M4105C/codeblocks/tp2/RotatePanel.h
+	<wx/wx.h>
+
+1539164822 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/RotatePanel.cpp
+	"RotatePanel.h"
 
