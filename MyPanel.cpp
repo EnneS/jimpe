@@ -10,8 +10,12 @@ void MyPanel::onPaint(wxPaintEvent &WXUNUSED(event)){
     }
 }
 
-MyPanel::MyPanel(wxWindow *parent) : wxPanel(parent), stream(0){
+MyPanel::MyPanel(wxWindow *parent) : wxPanel(parent), rotation(0), stream(0){
     Bind(wxEVT_PAINT, &MyPanel::onPaint, this) ;
+    for(int i = 0; i < EFFECTS_COUNT; i++){
+        effects[i] = Effect(i, 0);
+    }
+
     cv::Mat m;
     stream >> m;
 }
@@ -23,15 +27,6 @@ MyPanel::~MyPanel(void){
     }
 }
 
-void MyPanel::openImage(wxString fileName){
-
-    showStream();
-
-
-    Refresh();
-    SetSize(m_image->GetSize());
-    GetParent()->SetClientSize(m_image->GetSize());
-}
 
 void MyPanel::saveImage(wxString fileName){
     if(m_image){
@@ -48,10 +43,12 @@ void MyPanel::saveImage(wxString fileName){
 
 void MyPanel::Miroir(bool horizontal){
     if(m_image){
-        MyImage* img = m_image->Mirror(horizontal);
-        delete m_image;
-        m_image = img;
-        Refresh();
+        m_image->Mirror(horizontal);
+        if(horizontal)
+            effects[ID_MiroirH].toggle();
+        else
+            effects[ID_MiroirV].toggle();
+
     } else {
         wxMessageDialog error(this, "Pas d'image ouverte");
         error.ShowModal();
@@ -60,10 +57,9 @@ void MyPanel::Miroir(bool horizontal){
 
 void MyPanel::Blur(){
     if(m_image){
-        MyImage * img = new MyImage(m_image->Blur(3));
-        delete m_image;
-        m_image = img;
-        Refresh();
+        effects[ID_Blur].setParam(3);
+        effects[ID_Blur].toggle();
+
     } else {
         wxMessageDialog error(this, "Pas d'image ouverte");
         error.ShowModal();
@@ -72,39 +68,26 @@ void MyPanel::Blur(){
 
 void MyPanel::Rotate(){
     if(m_image){
-        MyRotateDialog *dlg = new MyRotateDialog(this, -1, wxDefaultPosition, wxSize(250,140)) ;
-        int process = dlg->ShowModal();
-        if(process == wxID_OK){
-            int rotateValue = dlg->RadioBox1->GetSelection();
-            MyImage* img;
-            if(rotateValue == 0){
-                img = m_image->Rotate90(true);
-            } else if(rotateValue == 1){
-                img = m_image->Rotate180();
-            } else {
-                img = m_image->Rotate90(false);
-            }
-            delete m_image;
-            delete dlg;
-            m_image = img;
-            Refresh();
-            SetSize(m_image->GetSize());
-            GetParent()->SetClientSize(m_image->GetSize());
-        }
-
-    } else {
+        effects[ID_RotateR].setParam(rotation);
+        effects[ID_RotateR].setActive(true);
+    }
+    else {
         wxMessageDialog error(this, "Pas d'image ouverte");
         error.ShowModal();
     }
 }
+void MyPanel::Rotate90(){
+    rotation = (rotation+1) % 4;
+    Rotate();
+}
+void MyPanel::RotateCounter90(){
+    rotation = (rotation-1) % 4;
+    Rotate();
+}
 
 void MyPanel::Negative(){
     if(m_image){
-        MyImage* img = new MyImage();
-        *img = m_image->Negative();
-        delete m_image;
-        m_image = img;
-        Refresh();
+        effects[ID_Negative].toggle();
     } else {
         wxMessageDialog error(this, "Pas d'image ouverte");
         error.ShowModal();
@@ -115,39 +98,32 @@ void MyPanel::Negative(){
 
 void MyPanel::Threshold(){
     if(m_image){
-        MyThresholdDialog *dlg = new MyThresholdDialog(this, -1, wxT("Seuillage"), wxDefaultPosition, wxSize(210,140)) ;
-        int process = dlg->ShowModal();
-        if(process == wxID_OK){
-            MyImage* img = new MyImage();
-            *img = m_image->Threshold(dlg->m_threshold->GetValue());
-            delete m_image;
-            delete dlg;
-            m_image = img;
-            Refresh();
+        if(effects[ID_Threshold].toggle()){
+            MyThresholdDialog *dlg = new MyThresholdDialog(this, -1, wxT("Seuillage"), wxDefaultPosition, wxSize(210,140)) ;
+            int process = dlg->ShowModal();
+            if(process == wxID_OK){
+                effects[ID_Threshold].setParam(dlg->m_threshold->GetValue());
+                delete dlg;
+            }
         }
-    } else {
+    }
+    else {
         wxMessageDialog error(this, "Pas d'image ouverte");
         error.ShowModal();
     }
 }
 
 void MyPanel::Posterize(){
-    if(m_image){/*
-        MyPosterizeDialog *dlg = new MyPosterizeDialog(this, -1, wxT("Postérisation"), wxDefaultPosition, wxSize(210,140)) ;
-        int process = dlg->ShowModal();
-        if(process == wxID_OK){
-            MyImage* img = new MyImage();
-            *img = m_image->Posterize(dlg->m_posterize->GetValue());
-            delete m_image;
-            delete dlg;
-            m_image = img;
-            Refresh();
-        }*/
-        showStream();
-        Refresh();
-        SetSize(m_image->GetSize());
-            GetParent()->SetClientSize(m_image->GetSize());
-    } else {
+    if(m_image){
+        if(effects[ID_Posterize].toggle()){
+            MyPosterizeDialog *dlg = new MyPosterizeDialog(this, -1, wxT("Postérisation"), wxDefaultPosition, wxSize(210,140)) ;
+            int process = dlg->ShowModal();
+            if(process == wxID_OK){
+                effects[ID_Posterize].setParam(dlg->m_posterize->GetValue());
+            }
+        }
+    }
+    else {
         wxMessageDialog error(this, "Pas d'image ouverte");
         error.ShowModal();
     }
@@ -163,21 +139,16 @@ void MyPanel::showStream(){
         cv::Mat frame;
         cv::Mat trans_avg = cv::Mat::eye(2,3,CV_64FC1);
         stream >> frame;
-        cv::cvtColor(frame, frame, CV_BGR2RGB, 3);
-        cv::Mat trans;
-        if(!prev_frame.empty())
-        {
-            trans=estimateRigidTransform(frame,prev_frame,0);
-            trans(cv::Range(0,2),cv::Range(0,2))=cv::Mat::eye(2,2,CV_64FC1);
-            trans_avg+=(trans-trans_avg)/2.0;
-//            warpAffine(frame,warped,trans_avg,Size( frame.cols, frame.rows));
-
-  //          imshow("Camw",warped);
-        }
 
         m_image = new MyImage(frame.cols, frame.rows);
         std::memcpy(m_image->GetData(), frame.data, frame.cols * frame.rows * 3);
 
+        for(int i = 0; i < EFFECTS_COUNT; i++){
+            effects[i].apply(m_image);
+        }
         Refresh();
+        SetSize(m_image->GetSize());
+        GetParent()->SetClientSize(m_image->GetSize());
     }
 }
+

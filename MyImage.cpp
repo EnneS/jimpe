@@ -1,4 +1,5 @@
 #include "MyImage.h"
+#include <cstdlib>
 MyImage::MyImage(const wxString& fileName): wxImage(fileName){}
 
 MyImage::MyImage(wxImage image): wxImage(image){}
@@ -14,16 +15,20 @@ MyImage::~MyImage()
     //dtor
 }
 
-MyImage MyImage::Negative(){
+MyImage* MyImage::Blur(int amount){
+    this->wxImage::Blur(amount);
+    return this;
+}
+MyImage* MyImage::Negative(){
     unsigned char* data = GetData();
     int length = (GetWidth() * GetHeight() * 3);
     for(unsigned long i = 0; i < length ; i++){
         data[i] = 255-data[i];
     }
-    return *this;
+    return this;
 }
 
-MyImage MyImage::Desaturate(){
+MyImage* MyImage::Desaturate(){
     unsigned char* data = GetData();
     float moyenne;
     int length = (GetWidth() * GetHeight() * 3);
@@ -33,10 +38,10 @@ MyImage MyImage::Desaturate(){
         data[i+1] = (int) moyenne;
         data[i+2] = (int) moyenne;
     }
-    return *this;
+    return this;
 }
 
-MyImage MyImage::Threshold(int seuil){
+MyImage* MyImage::Threshold(int seuil){
     unsigned char* data = GetData();
     float moyenne;
     register int val;
@@ -48,21 +53,22 @@ MyImage MyImage::Threshold(int seuil){
         data[i+1] = val;
         data[i+2] = val;
     }
-    return *this;
+    return this;
 }
 
 MyImage* MyImage::Rotate180(){
     int length = (GetWidth() * GetHeight() * 3);
     unsigned char* data = GetData();
-    unsigned char* dataBuffer = new unsigned char[length];
+    unsigned char* dataBuffer = ( unsigned char*) malloc(length);
 
     for(unsigned long i = 0; i < length; i+=3){
         dataBuffer[i] = data[length - i];
         dataBuffer[i+1] = data[length - i+1];
         dataBuffer[i+2] = data[length - i+2];
     }
-    MyImage* newImage = new MyImage(wxImage(GetWidth(), GetHeight(), dataBuffer));
-    return newImage;
+    Destroy();
+    SetData(dataBuffer, GetWidth(), GetHeight());
+    return this;
 }
 
 MyImage* MyImage::Mirror(bool horizontally){
@@ -71,7 +77,7 @@ MyImage* MyImage::Mirror(bool horizontally){
     int width = GetWidth();
     int full_width = GetWidth()*3;
 
-    unsigned char* dataBuffer = new unsigned char[length];
+    unsigned char* dataBuffer = ( unsigned char*) malloc(length);
     unsigned char* data = GetData();
 
     if(horizontally){
@@ -92,14 +98,15 @@ MyImage* MyImage::Mirror(bool horizontally){
         }
     }
 
-    MyImage* newImage = new MyImage(wxImage(GetWidth(), GetHeight(), dataBuffer));
-    return newImage;
+    Destroy();
+    SetData(dataBuffer, GetWidth(), GetHeight());
+    return this;
 }
 
 MyImage* MyImage::Rotate90(bool clockwise = true){
     unsigned char * data = GetData();
     int length = (GetWidth() * GetHeight() * 3);
-    unsigned char* dataBuffer = new unsigned char[length];
+    unsigned char* dataBuffer = ( unsigned char*) malloc(length);
     int height = GetHeight();
     int width = GetWidth();
     int full_width = width*3;
@@ -131,12 +138,14 @@ MyImage* MyImage::Rotate90(bool clockwise = true){
         dataBuffer[i+1] = data[((i+1+GetWidth()+(GetWidth()-1)*(i))%(GetWidth()*GetHeight()*3-1))-GetWidth()];
         dataBuffer[i+2] = data[((i+2+GetWidth()+(GetWidth()-1)*(i+1))%(GetWidth()*GetHeight()*3-1))-GetWidth()];
     }*/
-    MyImage* newImage = new MyImage(wxImage(GetHeight(), GetWidth(), dataBuffer));
-    return newImage;
+
+    Destroy();
+    SetData(dataBuffer, GetHeight(), GetWidth());
+    return this;
 }
 
 
-MyImage MyImage::Posterize(int nb){
+MyImage* MyImage::Posterize(int nb){
     unsigned char* data = GetData();
     unsigned char lookup_table[256];
     unsigned char m = 255;
@@ -159,5 +168,5 @@ MyImage MyImage::Posterize(int nb){
         data[i] = lookup_table[data[i]];
 
     }
-    return *this;
+    return this;
 }

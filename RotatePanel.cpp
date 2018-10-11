@@ -1,6 +1,6 @@
 #include "RotatePanel.h"
 
-RotatePanel::RotatePanel(wxWindow* parent) : wxPanel(parent, 0, 0, 200, 500, wxSIMPLE_BORDER)
+RotatePanel::RotatePanel(wxWindow* parent) : wxPanel(parent, wxID_ANY, wxPoint(0, 0), wxSize(200, 500), wxSIMPLE_BORDER)
 {
     wxString __wxRadioBoxChoices_1[3] =
   {

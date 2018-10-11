@@ -1,8 +1,10 @@
 #ifndef MYFRAME_H
 #define MYFRAME_H
+#include <wx/wx.h>
 #include "MyPanel.h"
 #include "RotatePanel.h"
-#include <wx/wx.h>
+
+
 
 
 class MyFrame: public wxFrame
@@ -16,21 +18,17 @@ private:
 	void OnExit(wxCommandEvent& event);
     void OnAbout(wxCommandEvent& event);
     void OnRotate(wxCommandEvent& event);
+    void OnIdle(wxIdleEvent& event);
     wxPanel *m_process_panel;
     MyPanel *m_panel; // the panel inside the main frame
     wxToolBar *m_toolbar;
+
 };
 
-enum	// énumération. Elle gère la numérotation automatiquement
-{
-	ID_Open = 1,
-	ID_Save = 2,
-	ID_MiroirH,
-	ID_MiroirV,
-	ID_Blur,
-	ID_Rotate,
-	ID_Negative,
-	ID_Threshold,
-	ID_Posterize
+enum{
+    ID_Record = 1001,
+    ID_Stop
+
 };
+
 #endif // MYFRAME_H

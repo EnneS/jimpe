@@ -11,13 +11,14 @@ class MyImage : public wxImage
         MyImage(int largeur, int hauteur);
         MyImage();
         virtual ~MyImage();
-        MyImage Negative();
-        MyImage Desaturate();
-        MyImage Threshold(int seuil);
+        MyImage* Blur(int amount);
+        MyImage* Negative();
+        MyImage* Desaturate();
+        MyImage* Threshold(int seuil);
         MyImage* Mirror(bool horizontally);
         MyImage* Rotate90(bool clockwise);
         MyImage* Rotate180();
-        MyImage Posterize(int nb = 1);
+        MyImage* Posterize(int nb = 1);
     protected:
 
     private:
