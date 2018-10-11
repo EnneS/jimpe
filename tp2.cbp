@@ -13,11 +13,13 @@
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
+					<Add option="-std=c++1y" />
 					<Add option="-g" />
 					<Add option="`pkg-config --cflags`" />
 					<Add directory="./" />
 					<Add directory="../tp2" />
 					<Add directory="include" />
+					<Add directory="C:/wxWidgets-3.1.1/include" />
 				</Compiler>
 				<Linker>
 					<Add option="`pkg-config --libs opencv`" />
@@ -34,6 +36,7 @@
 					<Add directory="./" />
 					<Add directory="../tp2" />
 					<Add directory="include" />
+					<Add directory="C:/wxWidgets-3.1.1/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -41,11 +44,77 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="`wx-config --cflags`" />
 			<Add option="-Wall" />
+			<Add option="-std=c++1y" />
+			<Add option="`wx-config --cxxflags`" />
+			<Add option="`wx-config --libs`" />
+			<Add option="`wx-config --cflags`" />
+			<Add directory="C:/wxWidgets-3.1.1/lib/gcc_dll/mswu" />
+			<Add directory="C:/opencv/build/include" />
+			<Add directory="C:/opencv/build/x64/mingw/install/include" />
 		</Compiler>
 		<Linker>
 			<Add option="`wx-config --libs`" />
+			<Add option="`pkg-config --libs opencv`" />
+			<Add library="C:/wxWidgets-3.1.1/lib/gcc_dll/libwxexpat.a" />
+			<Add library="C:/wxWidgets-3.1.1/lib/gcc_dll/libwxjpeg.a" />
+			<Add library="C:/wxWidgets-3.1.1/lib/gcc_dll/libwxmsw31u.a" />
+			<Add library="C:/wxWidgets-3.1.1/lib/gcc_dll/libwxmsw31u_gl.a" />
+			<Add library="C:/wxWidgets-3.1.1/lib/gcc_dll/libwxpng.a" />
+			<Add library="C:/wxWidgets-3.1.1/lib/gcc_dll/libwxregexu.a" />
+			<Add library="C:/wxWidgets-3.1.1/lib/gcc_dll/libwxscintilla.a" />
+			<Add library="C:/wxWidgets-3.1.1/lib/gcc_dll/libwxtiff.a" />
+			<Add library="C:/wxWidgets-3.1.1/lib/gcc_dll/libwxzlib.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_calib3d_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_core_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_dnn_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_features2d_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_flann_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_highgui_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_imgcodecs_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_imgproc_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_ml_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_objdetect_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_perf_calib3d_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_perf_core_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_perf_dnn_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_perf_features2d_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_perf_imgcodecs_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_perf_imgproc_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_perf_objdetect_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_perf_photo_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_perf_stitching_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_perf_superres_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_perf_video_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_perf_videoio_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_photo_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_shape_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_stitching_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_superres_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_test_calib3d_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_test_core_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_test_dnn_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_test_features2d_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_test_flann_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_test_highgui_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_test_imgcodecs_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_test_imgproc_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_test_ml_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_test_objdetect_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_test_photo_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_test_shape_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_test_stitching_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_test_superres_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_test_video_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_test_videoio_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_test_videostab_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_ts_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_ts343.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_video_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_videoio_pch_dephelp.a" />
+			<Add library="C:/opencv/build/x64/mingw/lib/libopencv_videostab_pch_dephelp.a" />
+			<Add directory="C:/wxWidgets-3.1.1/include" />
+			<Add directory="C:/opencv/build/x64/mingw/lib" />
 		</Linker>
 		<Unit filename="MyFrame.cpp" />
 		<Unit filename="MyFrame.h" />
