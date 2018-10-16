@@ -1740,68 +1740,72 @@
 1538465038 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/WebcamStream.cpp
 	"WebcamStream.h"
 
-1538480583 source:/users/info/etu-s4/royetju/Jimpe/MyFrame.cpp
+1539690479 source:/users/info/etu-s4/royetju/Jimpe/MyFrame.cpp
 	"MyFrame.h"
 
-1538480583 /users/info/etu-s4/royetju/Jimpe/MyFrame.h
+1539690479 /users/info/etu-s4/royetju/Jimpe/MyFrame.h
+	<wx/wx.h>
 	"MyPanel.h"
-	<wx/wx.h>
+	"RotatePanel.h"
 
-1538480583 /users/info/etu-s4/royetju/Jimpe/MyPanel.h
+1539694817 /users/info/etu-s4/royetju/Jimpe/MyPanel.h
 	<wx/wx.h>
+	<opencv2/opencv.hpp>
 	"MyImage.h"
 	"MyThresholdDialog.h"
 	"MyRotateDialog.h"
 	"MyPosterizeDialog.h"
-	"WebcamStream.h"
+	"VideoStream.h"
 
-1538480583 /users/info/etu-s4/royetju/Jimpe/MyImage.h
+1539690479 /users/info/etu-s4/royetju/Jimpe/MyImage.h
 	<wx/wx.h>
 	<iostream>
 
-1538480583 /users/info/etu-s4/royetju/Jimpe/MyThresholdDialog.h
+1539690474 /users/info/etu-s4/royetju/Jimpe/MyThresholdDialog.h
 	<wx/wx.h>
 
-1538480583 /users/info/etu-s4/royetju/Jimpe/MyRotateDialog.h
+1539690474 /users/info/etu-s4/royetju/Jimpe/MyRotateDialog.h
 	<wx/radiobox.h>
 	<wx/button.h>
 	<wx/dialog.h>
 
-1538480583 /users/info/etu-s4/royetju/Jimpe/MyPosterizeDialog.h
+1539690474 /users/info/etu-s4/royetju/Jimpe/MyPosterizeDialog.h
 	<wx/wx.h>
 
-1538480583 /users/info/etu-s4/royetju/Jimpe/WebcamStream.h
+1539690474 /users/info/etu-s4/royetju/Jimpe/WebcamStream.h
 	"opencv2/opencv.hpp"
 
-1538480583 source:/users/info/etu-s4/royetju/Jimpe/MyImage.cpp
+1539690479 source:/users/info/etu-s4/royetju/Jimpe/MyImage.cpp
 	"MyImage.h"
+	<cstdlib>
 
-1538480583 source:/users/info/etu-s4/royetju/Jimpe/MyPanel.cpp
+1539694512 source:/users/info/etu-s4/royetju/Jimpe/MyPanel.cpp
 	"MyPanel.h"
 	<thread>
 	<chrono>
 	<cstring>
 
-1538480583 source:/users/info/etu-s4/royetju/Jimpe/MyPosterizeDialog.cpp
+1539690474 source:/users/info/etu-s4/royetju/Jimpe/MyPosterizeDialog.cpp
 	"MyPosterizeDialog.h"
 
-1538480583 source:/users/info/etu-s4/royetju/Jimpe/MyRotateDialog.cpp
+1539690474 source:/users/info/etu-s4/royetju/Jimpe/MyRotateDialog.cpp
 	"MyRotateDialog.h"
 	<wx/intl.h>
 	<wx/string.h>
 
-1538480583 source:/users/info/etu-s4/royetju/Jimpe/MyThresholdDialog.cpp
+1539690474 source:/users/info/etu-s4/royetju/Jimpe/MyThresholdDialog.cpp
 	"MyThresholdDialog.h"
 
-1538480583 source:/users/info/etu-s4/royetju/Jimpe/tp2App.cpp
+1539690475 source:/users/info/etu-s4/royetju/Jimpe/tp2App.cpp
 
-1538480583 source:/users/info/etu-s4/royetju/Jimpe/tp2Main.cpp
+1539690480 source:/users/info/etu-s4/royetju/Jimpe/tp2Main.cpp
 	<wx/wxprec.h>
+	<opencv2/core/core.hpp>
 	<wx/wx.h>
 	"MyImage.h"
 	"MyFrame.h"
 
-1538480583 source:/users/info/etu-s4/royetju/Jimpe/WebcamStream.cpp
+1539690474 source:/users/info/etu-s4/royetju/Jimpe/WebcamStream.cpp
 	"WebcamStream.h"
 
 1539165018 /users/info/etu-s4/souliern/M4105C/codeblocks/tp2/RotatePanel.h
@@ -5295,4 +5299,38 @@
 
 1523416704 c:\opencv\build\include\opencv2\highgui\highgui.hpp
 	"opencv2/highgui.hpp"
+
+1539690479 /users/info/etu-s4/royetju/Jimpe/RotatePanel.h
+	<wx/wx.h>
+
+1539690479 source:/users/info/etu-s4/royetju/Jimpe/RotatePanel.cpp
+	"RotatePanel.h"
+
+1539694856 /users/info/etu-s4/royetju/Jimpe/include/VideoStream.h
+	<wx/wx.h>
+	"MyPanel.h"
+
+1539690479 /users/info/etu-s4/royetju/Jimpe//MyImage.h
+	<wx/wx.h>
+	<iostream>
+
+1539694817 /users/info/etu-s4/royetju/Jimpe//MyPanel.h
+	<wx/wx.h>
+	<opencv2/opencv.hpp>
+	"MyImage.h"
+	"MyThresholdDialog.h"
+	"MyRotateDialog.h"
+	"MyPosterizeDialog.h"
+	"VideoStream.h"
+
+1539690474 /users/info/etu-s4/royetju/Jimpe//MyThresholdDialog.h
+	<wx/wx.h>
+
+1539690474 /users/info/etu-s4/royetju/Jimpe//MyRotateDialog.h
+	<wx/radiobox.h>
+	<wx/button.h>
+	<wx/dialog.h>
+
+1539690474 /users/info/etu-s4/royetju/Jimpe//MyPosterizeDialog.h
+	<wx/wx.h>
 

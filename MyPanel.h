@@ -7,6 +7,7 @@
 #include "MyThresholdDialog.h"
 #include "MyRotateDialog.h"
 #include "MyPosterizeDialog.h"
+#include "VideoStream.h"
 
 enum	// énumération. Elle gère la numérotation automatiquement
 {
@@ -97,10 +98,10 @@ public:
 private:
     int rotation;
     wxBitmap m_bitmap;	// used to display the image
+    Effect effects[EFFECTS_COUNT];
     MyImage *m_image;		// used to load and process the image
     cv::VideoCapture stream;
-    cv::Mat prev_frame;
-    Effect effects[EFFECTS_COUNT];
+    VideoStream thread;
 };
 
 #endif // MYPANEL_H

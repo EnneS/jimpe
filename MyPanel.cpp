@@ -10,7 +10,7 @@ void MyPanel::onPaint(wxPaintEvent &WXUNUSED(event)){
     }
 }
 
-MyPanel::MyPanel(wxWindow *parent) : wxPanel(parent), rotation(0), stream(0){
+MyPanel::MyPanel(wxWindow *parent) : wxPanel(parent), rotation(0), stream(0), thread(this){
     Bind(wxEVT_PAINT, &MyPanel::onPaint, this) ;
     for(int i = 0; i < EFFECTS_COUNT; i++){
         effects[i] = Effect(i, 0);
@@ -18,6 +18,10 @@ MyPanel::MyPanel(wxWindow *parent) : wxPanel(parent), rotation(0), stream(0){
 
     cv::Mat m;
     stream >> m;
+    m_image = new MyImage(m.cols, m.rows);
+
+	thread.Create();
+	thread.Run();
 }
 
 MyPanel::~MyPanel(void){
@@ -124,17 +128,11 @@ void MyPanel::Posterize(){
 }
 
 void MyPanel::showStream(){
-    if(m_image){
-        delete m_image;
-        m_image = nullptr;
-    }
 
     if(stream.isOpened()){
         cv::Mat frame;
-        cv::Mat trans_avg = cv::Mat::eye(2,3,CV_64FC1);
         stream >> frame;
 
-        m_image = new MyImage(frame.cols, frame.rows);
         std::memcpy(m_image->GetData(), frame.data, frame.cols * frame.rows * 3);
 
         for(int i = 0; i < EFFECTS_COUNT; i++){
