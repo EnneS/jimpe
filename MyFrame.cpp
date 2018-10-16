@@ -95,25 +95,38 @@ void MyFrame::OnAbout(wxCommandEvent& event)
 
 void MyFrame::OnProcess(wxCommandEvent& event)
 {
+
     switch(event.GetId()){
         case ID_MiroirH :
             m_panel->Miroir(true);
             break;
         case ID_MiroirV : m_panel->Miroir(false); break;
         case ID_Blur : m_panel->Blur(); break;
-        case ID_Rotate : {
+        case ID_Rotate:
+
+            if(m_process_panel){
+                delete m_process_panel;
+                m_process_panel = nullptr;
+            }
+
+            if(currentProcessPanel != ID_Rotate){
+                currentProcessPanel = ID_Rotate;
                 m_process_panel = new RotatePanel(this);
                 m_panel->SetPosition(wxPoint(m_process_panel->GetSize().GetWidth(),0));
-                Bind(DO_ROTATE, &MyFrame::OnRotate, this) ;
-                Fit();
+                Bind(DO_ROTATE, &MyFrame::OnRotate, this);
+                SetClientSize(m_process_panel->GetSize().GetWidth() + m_panel->GetSize().GetWidth(), std::max(m_process_panel->GetSize().GetHeight(), m_panel->GetSize().GetHeight()));
+            } else {
+                currentProcessPanel = -1;
+                m_panel->SetPosition(wxPoint(0,0));
+            }
             break;
-        }
         case ID_Negative : m_panel->Negative(); break;
         case ID_Threshold : m_panel->Threshold(); break;
         case ID_Posterize : m_panel->Posterize(); break;
     }
+
 }
 
 void MyFrame::OnRotate(wxCommandEvent& event){
-    m_panel->Rotate(1);
+    //m_panel->Rotate(1);
 }

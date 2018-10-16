@@ -19,7 +19,7 @@ private:
     wxPanel *m_process_panel;
     MyPanel *m_panel; // the panel inside the main frame
     wxToolBar *m_toolbar;
-
+    int currentProcessPanel;
 };
 
 enum{

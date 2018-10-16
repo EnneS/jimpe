@@ -1706,10 +1706,10 @@
 1538392775 /users/info/etu-s4/souliern/M4105C/codeblocks/tp2/include/MyPosterizeDialog.h
 	<wx/wx.h>
 
-1539688561 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyFrame.cpp
+1539689561 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyFrame.cpp
 	"MyFrame.h"
 
-1539688609 /users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyFrame.h
+1539689286 /users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyFrame.h
 	<wx/wx.h>
 	"MyPanel.h"
 	"RotatePanel.h"
