@@ -1,8 +1,9 @@
 #include "VideoStream.h"
 
-VideoStream::VideoStream(MyPanel* p)
+
+VideoStream::VideoStream(MyPanel* p, cv::Mat& f, wxMutex& m) : stream(0), panel(p), frame(f), mutex(m)
 {
-    m_panel = p;
+    stream >> frame;
 }
 
 VideoStream::~VideoStream()
@@ -12,7 +13,17 @@ VideoStream::~VideoStream()
 void* VideoStream::Entry(){
     while(!TestDestroy())	// tant que le thread n'est pas détruit
     {
-        m_panel->showStream();
+        if(stream.isOpened()){
+
+            mutex.Lock();
+            stream >> frame;
+            mutex.Unlock();
+
+            wxCommandEvent* evt = new wxCommandEvent(NEW_FRAME_EVENT);
+            wxQueueEvent(panel, evt);
+
+        }
+
     }
     return NULL ;	// the thread is finished in a clean way
 }

@@ -2,17 +2,22 @@
 #define VIDEOSTREAM_H
 
 #include <wx/wx.h>
-
+#include <opencv2/opencv.hpp>
 class MyPanel;
+
+wxDECLARE_EVENT(NEW_FRAME_EVENT, wxCommandEvent);
+wxDEFINE_EVENT(NEW_FRAME_EVENT, wxCommandEvent);
 
 class VideoStream : public wxThread
 {
     public:
-        VideoStream(MyPanel* p);
+        VideoStream(MyPanel* p, cv::Mat& f, wxMutex& m);
         ~VideoStream();
-
     private:
-        MyPanel* m_panel;
+        MyPanel* panel;
+        wxMutex& mutex;
+        cv::Mat& frame;
+        cv::VideoCapture stream;
         virtual void* Entry();
 };
 #include "MyPanel.h"

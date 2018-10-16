@@ -10,16 +10,15 @@ void MyPanel::onPaint(wxPaintEvent &WXUNUSED(event)){
     }
 }
 
-MyPanel::MyPanel(wxWindow *parent) : wxPanel(parent), rotation(0), stream(0), thread(this){
+MyPanel::MyPanel(wxWindow *parent) : wxPanel(parent), rotation(0), thread(this, frame, mutex){
     Bind(wxEVT_PAINT, &MyPanel::onPaint, this) ;
+    Bind(NEW_FRAME_EVENT, &MyPanel::showStream, this);
+
     for(int i = 0; i < EFFECTS_COUNT; i++){
         effects[i] = Effect(i, 0);
     }
 
-    cv::Mat m;
-    stream >> m;
-    m_image = new MyImage(m.cols, m.rows);
-
+    m_image = new MyImage(frame.cols, frame.rows);
 	thread.Create();
 	thread.Run();
 }
@@ -127,20 +126,17 @@ void MyPanel::Posterize(){
     }
 }
 
-void MyPanel::showStream(){
+void MyPanel::showStream(wxCommandEvent& evt){
 
-    if(stream.isOpened()){
-        cv::Mat frame;
-        stream >> frame;
+    mutex.Lock();
+    std::memcpy(m_image->GetData(), frame.data, frame.cols * frame.rows * 3);
+    mutex.Unlock();
 
-        std::memcpy(m_image->GetData(), frame.data, frame.cols * frame.rows * 3);
-
-        for(int i = 0; i < EFFECTS_COUNT; i++){
-            effects[i].apply(m_image);
-        }
-        Refresh();
-        SetSize(m_image->GetSize());
-        GetParent()->SetClientSize(m_image->GetSize());
+    for(int i = 0; i < EFFECTS_COUNT; i++){
+        effects[i].apply(m_image);
     }
+    Refresh();
+    SetSize(m_image->GetSize());
+    GetParent()->SetClientSize(m_image->GetSize());
 }
 

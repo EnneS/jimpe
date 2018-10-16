@@ -92,7 +92,7 @@ public:
     void Negative();
     void Threshold();
     void Posterize();
-    void showStream();
+    void showStream(wxCommandEvent& evt);
     void Rotate(int r);
 
 private:
@@ -100,8 +100,10 @@ private:
     wxBitmap m_bitmap;	// used to display the image
     Effect effects[EFFECTS_COUNT];
     MyImage *m_image;		// used to load and process the image
-    cv::VideoCapture stream;
+    cv::Mat frame;
+    wxMutex mutex;
     VideoStream thread;
+
 };
 
 #endif // MYPANEL_H
