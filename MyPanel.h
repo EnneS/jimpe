@@ -2,19 +2,18 @@
 #define MYPANEL_H
 
 #include <wx/wx.h>
+#include <opencv2/opencv.hpp>
 #include "MyImage.h"
 #include "MyThresholdDialog.h"
 #include "MyRotateDialog.h"
 #include "MyPosterizeDialog.h"
-#include "WebcamStream.h"
 
 enum	// énumération. Elle gère la numérotation automatiquement
 {
 	ID_MiroirH = 0,
 	ID_MiroirV,
 	ID_Blur,
-	ID_RotateL,
-	ID_RotateR,
+	ID_Rotate,
 	ID_Negative,
 	ID_Threshold,
 	ID_Posterize,
@@ -57,8 +56,7 @@ public:
             case ID_Blur:
                 return image->Blur(parameter);
                 break;
-            case ID_RotateL:
-            case ID_RotateR:
+            case ID_Rotate:
                 if(parameter == 1)
                     return image->Rotate90(true);
                 else if(parameter == 2)
@@ -90,15 +88,13 @@ public:
     void saveImage(wxString fileName);
     void Miroir(bool horizontal);
     void Blur();
-    void Rotate90();
-    void RotateCounter90();
     void Negative();
     void Threshold();
     void Posterize();
     void showStream();
+    void Rotate(int r);
 
 private:
-    void Rotate();
     int rotation;
     wxBitmap m_bitmap;	// used to display the image
     MyImage *m_image;		// used to load and process the image

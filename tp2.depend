@@ -1652,8 +1652,9 @@
 1528706438 /usr/include/wx-3.0/wx/gtk/statline.h
 	"wx/defs.h"
 
-1538394445 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/tp2Main.cpp
+1539687997 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/tp2Main.cpp
 	<wx/wxprec.h>
+	<opencv2/core/core.hpp>
 	<wx/wx.h>
 	"MyImage.h"
 	"MyFrame.h"
@@ -1669,12 +1670,13 @@
 	"wx/os2/private.h"
 	"wx/wx.h"
 
-1538398048 /users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyImage.h
+1539687748 /users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyImage.h
 	<wx/wx.h>
 	<iostream>
 
-1538398222 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyImage.cpp
+1539687748 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyImage.cpp
 	"MyImage.h"
+	<cstdlib>
 
 1538029055 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyTresholdDialog.cpp
 	"MyTresholdDialog.h"
@@ -1704,26 +1706,26 @@
 1538392775 /users/info/etu-s4/souliern/M4105C/codeblocks/tp2/include/MyPosterizeDialog.h
 	<wx/wx.h>
 
-1539164379 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyFrame.cpp
+1539688561 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyFrame.cpp
 	"MyFrame.h"
 
-1539165014 /users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyFrame.h
+1539688609 /users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyFrame.h
+	<wx/wx.h>
 	"MyPanel.h"
 	"RotatePanel.h"
-	<wx/wx.h>
 
-1539089711 /users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyPanel.h
+1539688738 /users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyPanel.h
 	<wx/wx.h>
+	<opencv2/opencv.hpp>
 	"MyImage.h"
 	"MyThresholdDialog.h"
 	"MyRotateDialog.h"
 	"MyPosterizeDialog.h"
-	"WebcamStream.h"
 
 1538394736 /users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyPosterizeDialog.h
 	<wx/wx.h>
 
-1539160614 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyPanel.cpp
+1539688445 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/MyPanel.cpp
 	"MyPanel.h"
 	<thread>
 	<chrono>
@@ -1805,7 +1807,7 @@
 1539165018 /users/info/etu-s4/souliern/M4105C/codeblocks/tp2/RotatePanel.h
 	<wx/wx.h>
 
-1539164822 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/RotatePanel.cpp
+1539687748 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/RotatePanel.cpp
 	"RotatePanel.h"
 
 1539188782 source:c:\users\juan\documents\prog\jimpe\myposterizedialog.cpp

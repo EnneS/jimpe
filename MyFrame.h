@@ -4,9 +4,6 @@
 #include "MyPanel.h"
 #include "RotatePanel.h"
 
-
-
-
 class MyFrame: public wxFrame
 {
 public:

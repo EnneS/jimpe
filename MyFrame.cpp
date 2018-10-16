@@ -23,7 +23,7 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     m_toolbar->AddTool(ID_Negative, wxT("Negatif"), negativeIcon);
     m_toolbar->AddTool(ID_MiroirH, wxT("Miroir Vertical"), mirrorHIcon);
     m_toolbar->AddTool(ID_MiroirV, wxT("Miroir Horizontal"), mirrorVIcon);
-    m_toolbar->AddTool(ID_RotateR, wxT("Rotation"), rotateIcon);
+    m_toolbar->AddTool(ID_Rotate, wxT("Rotation"), rotateIcon);
 
     // Activation de la toolbar
     m_toolbar->Realize();
@@ -48,10 +48,8 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_MiroirV) ;
 	menuProcess->Append(ID_Blur, wxT("Flou \tCtrl-F"), _("Applique un effet de flou")) ;
 	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Blur);
-    menuProcess->Append(ID_RotateR, wxT("Rotation \tCtrl-R"), _("Applique une rotation a l'image")) ;
-	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_RotateR);
-	menuProcess->Append(ID_RotateL, wxT("Rotation \tCtrl-L"), _("Applique une rotation a l'image")) ;
-	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_RotateL);
+    menuProcess->Append(ID_Rotate, wxT("Rotation \tCtrl-R"), _("Applique une rotation a l'image")) ;
+	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Rotate);
     menuProcess->Append(ID_Negative, wxT("Negatif \tCtrl-N"), _("Negativer l\'image")) ;
 	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Negative);
     menuProcess->Append(ID_Threshold, wxT("Seuillage \tCtrl-T"), _("Applique un seuillage a l\'image")) ;
@@ -59,7 +57,7 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     menuProcess->Append(ID_Posterize, wxT("Postérisation \tCtrl-P"), _("Applique une posterisation a l\'image")) ;
 	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Posterize);
 
-    Connect( wxID_ANY, wxEVT_IDLE, wxIdleEventHandler(MyFrame::OnIdle) );
+    //Connect( wxID_ANY, wxEVT_IDLE, wxIdleEventHandler(MyFrame::OnIdle) );
 
 	wxMenuBar *menuBar = new wxMenuBar ;
 	menuBar->Append( menuFile, wxT("File" )) ;
@@ -98,19 +96,24 @@ void MyFrame::OnAbout(wxCommandEvent& event)
 void MyFrame::OnProcess(wxCommandEvent& event)
 {
     switch(event.GetId()){
-        case ID_MiroirH : m_panel->Miroir(true); break;
+        case ID_MiroirH :
+            m_panel->Miroir(true);
+            break;
         case ID_MiroirV : m_panel->Miroir(false); break;
         case ID_Blur : m_panel->Blur(); break;
-        case ID_RotateL : m_panel->Rotate90(); break;
-        case ID_RotateR : m_panel->RotateCounter90(); break;
+        case ID_Rotate : {
+                m_process_panel = new RotatePanel(this);
+                m_panel->SetPosition(wxPoint(m_process_panel->GetSize().GetWidth(),0));
+                Bind(DO_ROTATE, &MyFrame::OnRotate, this) ;
+                Fit();
+            break;
+        }
         case ID_Negative : m_panel->Negative(); break;
         case ID_Threshold : m_panel->Threshold(); break;
         case ID_Posterize : m_panel->Posterize(); break;
     }
 }
 
-void MyFrame::OnIdle(wxIdleEvent& event){
-    m_panel->showStream();
-    event.RequestMore();
+void MyFrame::OnRotate(wxCommandEvent& event){
+    m_panel->Rotate(1);
 }
-

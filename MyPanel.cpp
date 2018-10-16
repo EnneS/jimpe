@@ -66,23 +66,17 @@ void MyPanel::Blur(){
     }
 }
 
-void MyPanel::Rotate(){
+
+void MyPanel::Rotate(int r){
+    rotation = (rotation+r) % 4;
     if(m_image){
-        effects[ID_RotateR].setParam(rotation);
-        effects[ID_RotateR].setActive(true);
+        effects[ID_Rotate].setParam(rotation);
+        effects[ID_Rotate].setActive(true);
     }
     else {
         wxMessageDialog error(this, "Pas d'image ouverte");
         error.ShowModal();
     }
-}
-void MyPanel::Rotate90(){
-    rotation = (rotation+1) % 4;
-    Rotate();
-}
-void MyPanel::RotateCounter90(){
-    rotation = (rotation-1) % 4;
-    Rotate();
 }
 
 void MyPanel::Negative(){
