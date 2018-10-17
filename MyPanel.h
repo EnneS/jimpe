@@ -8,6 +8,7 @@
 #include "MyRotateDialog.h"
 #include "MyPosterizeDialog.h"
 #include "VideoStream.h"
+#include <iostream>
 
 enum	// énumération. Elle gère la numérotation automatiquement
 {

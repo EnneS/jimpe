@@ -66,7 +66,7 @@ MyImage* MyImage::Rotate180(){
         dataBuffer[i+1] = data[length - i+1];
         dataBuffer[i+2] = data[length - i+2];
     }
-    Destroy();
+
     SetData(dataBuffer, GetWidth(), GetHeight());
     return this;
 }
@@ -98,7 +98,6 @@ MyImage* MyImage::Mirror(bool horizontally){
         }
     }
 
-    Destroy();
     SetData(dataBuffer, GetWidth(), GetHeight());
     return this;
 }
@@ -139,7 +138,6 @@ MyImage* MyImage::Rotate90(bool clockwise = true){
         dataBuffer[i+2] = data[((i+2+GetWidth()+(GetWidth()-1)*(i+1))%(GetWidth()*GetHeight()*3-1))-GetWidth()];
     }*/
 
-    Destroy();
     SetData(dataBuffer, GetHeight(), GetWidth());
     return this;
 }
@@ -157,14 +155,6 @@ MyImage* MyImage::Posterize(int nb){
     }
 
     for(unsigned long i = 0; i < length; i++){
-        /*data[i] = data[i] | ( m >> nbCouleur);
-        data[i+1] = data[i+1] | ( m >> nbCouleur);
-        data[i+2] = data[i+2] | ( m >> nbCouleur);
-
-        data[i] = data[i] - data[i] % (256 >> nbCouleur);
-        data[i+1] = data[i+1] - data[i+1] % (256 >> nbCouleur);
-        data[i+2] = data[i+2] - data[i+2] % (256 >> nbCouleur);
-*/
         data[i] = lookup_table[data[i]];
 
     }

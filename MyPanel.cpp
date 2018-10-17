@@ -2,6 +2,9 @@
 #include <thread>
 #include <chrono>
 #include <cstring>
+
+wxDEFINE_EVENT(NEW_FRAME_EVENT, wxCommandEvent);
+
 void MyPanel::onPaint(wxPaintEvent &WXUNUSED(event)){
     wxPaintDC dc(this);
     if(m_image){
@@ -19,6 +22,9 @@ MyPanel::MyPanel(wxWindow *parent) : wxPanel(parent), rotation(0), thread(this, 
     }
 
     m_image = new MyImage(frame.cols, frame.rows);
+    std::memcpy(m_image->GetData(), frame.data, frame.cols * frame.rows * 3);
+    GetParent()->SetClientSize(m_image->GetSize());
+
 	thread.Create();
 	thread.Run();
 }
@@ -71,7 +77,12 @@ void MyPanel::Blur(){
 
 
 void MyPanel::Rotate(int r){
-    rotation = (rotation+r) % 4;
+    rotation += r;
+    if(rotation >= 4)
+        rotation -= 4;
+    if(rotation < 0)
+        rotation += 4;
+
     if(m_image){
         effects[ID_Rotate].setParam(rotation);
         effects[ID_Rotate].setActive(true);
@@ -112,31 +123,29 @@ void MyPanel::Threshold(){
 
 void MyPanel::Posterize(){
     if(m_image){
-        if(effects[ID_Posterize].toggle()){
-            MyPosterizeDialog *dlg = new MyPosterizeDialog(this, -1, wxT("Postérisation"), wxDefaultPosition, wxSize(210,140)) ;
-            int process = dlg->ShowModal();
-            if(process == wxID_OK){
-                effects[ID_Posterize].setParam(dlg->m_posterize->GetValue());
-            }
-        }
-    }
-    else {
+        effects[ID_Posterize].setParam(2);
+        effects[ID_Posterize].toggle();
+    } else {
         wxMessageDialog error(this, "Pas d'image ouverte");
         error.ShowModal();
     }
+
 }
 
 void MyPanel::showStream(wxCommandEvent& evt){
 
+    wxSize source_size(frame.cols, frame.rows);
+    m_image->Resize(source_size, wxPoint(0, 0));
     mutex.Lock();
     std::memcpy(m_image->GetData(), frame.data, frame.cols * frame.rows * 3);
     mutex.Unlock();
 
+
     for(int i = 0; i < EFFECTS_COUNT; i++){
         effects[i].apply(m_image);
     }
+
     Refresh();
     SetSize(m_image->GetSize());
-    GetParent()->SetClientSize(m_image->GetSize());
 }
 

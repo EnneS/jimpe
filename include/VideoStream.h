@@ -6,7 +6,6 @@
 class MyPanel;
 
 wxDECLARE_EVENT(NEW_FRAME_EVENT, wxCommandEvent);
-wxDEFINE_EVENT(NEW_FRAME_EVENT, wxCommandEvent);
 
 class VideoStream : public wxThread
 {
@@ -14,10 +13,11 @@ class VideoStream : public wxThread
         VideoStream(MyPanel* p, cv::Mat& f, wxMutex& m);
         ~VideoStream();
     private:
-        MyPanel* panel;
-        wxMutex& mutex;
-        cv::Mat& frame;
         cv::VideoCapture stream;
+        MyPanel* panel;
+        cv::Mat& frame;
+        wxMutex& mutex;
+
         virtual void* Entry();
 };
 #include "MyPanel.h"

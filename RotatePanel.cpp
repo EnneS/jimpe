@@ -20,5 +20,7 @@ RotatePanel::~RotatePanel()
 
 void RotatePanel::sendMessage(wxCommandEvent& event){
     wxCommandEvent outEvent(DO_ROTATE) ;	// création d'un événement propre
+    int lookup[3] = {1, 2, -1};
+    outEvent.SetInt(lookup[RadioBox1->GetSelection()]);
     wxPostEvent(GetParent(), outEvent);		// poste le message au wxPanel
 }

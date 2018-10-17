@@ -128,5 +128,7 @@ void MyFrame::OnProcess(wxCommandEvent& event)
 }
 
 void MyFrame::OnRotate(wxCommandEvent& event){
-    //m_panel->Rotate(1);
+    m_panel->Rotate(event.GetInt());
+    if(event.GetInt()!= 2)
+        SetClientSize(m_process_panel->GetSize().GetWidth() + std::max(m_process_panel->GetSize().GetHeight(), m_panel->GetSize().GetHeight()), m_panel->GetSize().GetWidth());
 }

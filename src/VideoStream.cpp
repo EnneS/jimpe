@@ -15,13 +15,14 @@ void* VideoStream::Entry(){
     {
         if(stream.isOpened()){
 
+            wxMilliSleep(10);
             mutex.Lock();
             stream >> frame;
+            cv::cvtColor(frame, frame, CV_BGR2RGB);
             mutex.Unlock();
 
             wxCommandEvent* evt = new wxCommandEvent(NEW_FRAME_EVENT);
             wxQueueEvent(panel, evt);
-
         }
 
     }
