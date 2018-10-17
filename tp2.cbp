@@ -53,6 +53,8 @@
 			<Add option="`wx-config --libs`" />
 			<Add option="`pkg-config --libs opencv`" />
 		</Linker>
+		<Unit filename="DoubleBuffer.cpp" />
+		<Unit filename="DoubleBuffer.h" />
 		<Unit filename="MyFrame.cpp" />
 		<Unit filename="MyFrame.h" />
 		<Unit filename="MyImage.cpp" />
@@ -67,10 +69,11 @@
 		<Unit filename="MyThresholdDialog.h" />
 		<Unit filename="RotatePanel.cpp" />
 		<Unit filename="RotatePanel.h" />
+		<Unit filename="VideoStream.cpp" />
+		<Unit filename="VideoStream.h" />
 		<Unit filename="WebcamStream.cpp" />
 		<Unit filename="WebcamStream.h" />
-		<Unit filename="include/VideoStream.h" />
-		<Unit filename="src/VideoStream.cpp" />
+		<Unit filename="oldFunctions.cpp" />
 		<Unit filename="tp2App.cpp" />
 		<Unit filename="tp2App.h" />
 		<Unit filename="tp2Main.cpp" />

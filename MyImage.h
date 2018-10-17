@@ -2,26 +2,26 @@
 #define MYIMAGE_H
 #include <wx/wx.h>
 #include <iostream>
-
+#include <opencv2/opencv.hpp>
+#include "DoubleBuffer.h"
 class MyImage : public wxImage
 {
     public:
-        MyImage(const wxString& fileName);
-        MyImage(wxImage image);
-        MyImage(int largeur, int hauteur);
-        MyImage();
-        virtual ~MyImage();
-        MyImage* Blur(int amount);
-        MyImage* Negative();
-        MyImage* Desaturate();
-        MyImage* Threshold(int seuil);
-        MyImage* Mirror(bool horizontally);
-        MyImage* Rotate90(bool clockwise);
-        MyImage* Rotate180();
-        MyImage* Posterize(int nb = 1);
-    protected:
+        MyImage(int largeur, int hauteur, DoubleBuffer& img);
+        MyImage(DoubleBuffer& img);
 
+        virtual ~MyImage();
+        void Blur(int amount);
+        void Negative();
+        void Desaturate();
+        void Threshold(int seuil);
+        void Mirror(bool horizontally);
+        void Rotate90(bool clockwise);
+        void Rotate180();
+        void Posterize(int nb = 1);
+        void Reload();
     private:
+        DoubleBuffer& image;
 };
 
 #endif // MYIMAGE_H

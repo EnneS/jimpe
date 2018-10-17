@@ -44,37 +44,37 @@ public:
     void setParam(unsigned int param){
         parameter = param;
     }
-    MyImage* apply(MyImage* image){
+    void apply(MyImage* image){
         if(!active)
-            return image;
+            return;
 
         switch(type){
             case ID_MiroirH:
-                return image->Mirror(true);
+                image->Mirror(true);
                 break;
             case ID_MiroirV:
-                return image->Mirror(false);
+                image->Mirror(false);
                 break;
             case ID_Blur:
-                return image->Blur(parameter);
+                image->Blur(parameter);
                 break;
             case ID_Rotate:
                 if(parameter == 1)
-                    return image->Rotate90(true);
+                    image->Rotate90(true);
                 else if(parameter == 2)
-                    return image->Rotate180();
+                    image->Rotate180();
                 else if(parameter == 3)
-                    return image->Rotate90(false);
+                    image->Rotate90(false);
 
                 break;
             case ID_Negative:
-                return image->Negative();
+                image->Negative();
                 break;
             case ID_Threshold:
-                return image->Threshold(parameter);
+                image->Threshold(parameter);
                 break;
             case ID_Posterize:
-                return image->Posterize(parameter);
+                image->Posterize(parameter);
                 break;
         }
     }
@@ -101,8 +101,7 @@ private:
     wxBitmap m_bitmap;	// used to display the image
     Effect effects[EFFECTS_COUNT];
     MyImage *m_image;		// used to load and process the image
-    cv::Mat frame;
-    wxMutex mutex;
+    DoubleBuffer buffer;
     VideoStream thread;
 
 };
