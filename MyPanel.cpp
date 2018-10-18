@@ -22,6 +22,7 @@ MyPanel::MyPanel(wxWindow *parent) : wxPanel(parent), rotation(0), thread(this, 
     }
 
     m_image = new MyImage(buffer);
+    m_image->Reload();
 
 	thread.Create();
 	thread.Run();
@@ -132,11 +133,11 @@ void MyPanel::Posterize(){
 
 void MyPanel::showStream(wxCommandEvent& evt){
 
+    buffer.FlagFront();
     for(int i = 0; i < EFFECTS_COUNT; i++){
         effects[i].apply(m_image);
     }
     m_image->Reload();
-    buffer.FlagFront();
 
     Refresh();
     SetSize(m_image->GetSize());
