@@ -56,6 +56,8 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Threshold);
     menuProcess->Append(ID_Posterize, wxT("Postérisation \tCtrl-P"), _("Applique une posterisation a l\'image")) ;
 	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Posterize);
+	menuProcess->Append(ID_BorderDetect, wxT("Détéction de bords \tCtrl-D"), _("Applique une détéction de bords a l\'image")) ;
+	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_BorderDetect);
 
     //Connect( wxID_ANY, wxEVT_IDLE, wxIdleEventHandler(MyFrame::OnIdle) );
 
@@ -123,6 +125,7 @@ void MyFrame::OnProcess(wxCommandEvent& event)
         case ID_Negative : m_panel->Negative(); break;
         case ID_Threshold : m_panel->Threshold(); break;
         case ID_Posterize : m_panel->Posterize(); break;
+        case ID_BorderDetect : m_panel->BorderDetect();
     }
 
 }

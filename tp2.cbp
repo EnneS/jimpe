@@ -71,8 +71,6 @@
 		<Unit filename="RotatePanel.h" />
 		<Unit filename="VideoStream.cpp" />
 		<Unit filename="VideoStream.h" />
-		<Unit filename="WebcamStream.cpp" />
-		<Unit filename="WebcamStream.h" />
 		<Unit filename="oldFunctions.cpp" />
 		<Unit filename="tp2App.cpp" />
 		<Unit filename="tp2App.h" />

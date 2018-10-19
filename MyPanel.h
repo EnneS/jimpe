@@ -19,6 +19,7 @@ enum	// énumération. Elle gère la numérotation automatiquement
 	ID_Negative,
 	ID_Threshold,
 	ID_Posterize,
+	ID_BorderDetect,
 
 	EFFECTS_COUNT
 };
@@ -76,6 +77,9 @@ public:
             case ID_Posterize:
                 image->Posterize(parameter);
                 break;
+            case ID_BorderDetect:
+                image->BorderDetect();
+                break;
         }
     }
 };
@@ -89,12 +93,14 @@ public:
     void onPaint(wxPaintEvent &WXUNUSED(event));
     void saveImage(wxString fileName);
     void Miroir(bool horizontal);
+    void Rotate(int r);
     void Blur();
     void Negative();
     void Threshold();
     void Posterize();
+    void BorderDetect();
     void showStream(wxCommandEvent& evt);
-    void Rotate(int r);
+
 
 private:
     int rotation;

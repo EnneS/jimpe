@@ -46,8 +46,30 @@ void MyImage::Rotate180(){
     *img = dst;
 }
 void MyImage::Posterize(int nb){
+    cv::Mat* img = image.GetFront();
+    unsigned char* data = img->ptr();
+    unsigned char lookup_table[256];
+    unsigned char m = 255;
+    int length = (img->rows * img->cols * 3);
+    unsigned char nbCouleurs = 1 << nb;
 
+    for(int i = 0; i < 256; i++){
+        lookup_table[i] = (i / (256/nbCouleurs)) * (m / (nbCouleurs - 1));
+    }
+
+    for(unsigned long i = 0; i < length; i++){
+        data[i] = lookup_table[data[i]];
+    }
 }
+void MyImage::BorderDetect(){
+    float data[9] = {1, 1, 1, 1, -8, 1, 1, 1, 1};
+    cv::Mat* img = image.GetFront();
+    cv::Mat kernel = cv::Mat(3, 3, CV_32F, data);
+    cv::Mat dst = cv::Mat(img->rows, img->cols, CV_8UC3);
+    cv::filter2D(*img, dst, -1, kernel, cv::Point(-1, -1), 0, cv::BORDER_CONSTANT);
+    *img = dst;
+}
+
 void MyImage::Reload(){
     cv::Mat* img = image.GetFront();
     SetData(img->data, img->cols, img->rows, true);

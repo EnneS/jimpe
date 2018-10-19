@@ -20,6 +20,7 @@ class MyImage : public wxImage
         void Rotate180();
         void Posterize(int nb = 1);
         void Reload();
+        void BorderDetect();
     private:
         DoubleBuffer& image;
 };

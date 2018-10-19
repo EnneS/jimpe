@@ -131,6 +131,17 @@ void MyPanel::Posterize(){
 
 }
 
+void MyPanel::BorderDetect(){
+    if(m_image){
+        effects[ID_BorderDetect].toggle();
+    } else {
+        wxMessageDialog error(this, "Pas d'image ouverte");
+        error.ShowModal();
+    }
+
+
+}
+
 void MyPanel::showStream(wxCommandEvent& evt){
 
     buffer.FlagFront();
