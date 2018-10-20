@@ -14,13 +14,12 @@ enum	// énumération. Elle gère la numérotation automatiquement
 {
 	ID_MiroirH = 0,
 	ID_MiroirV,
-	ID_Blur,
 	ID_Rotate,
-	ID_Negative,
-	ID_Threshold,
-	ID_Posterize,
 	ID_BorderDetect,
-
+	ID_Posterize,
+	ID_Threshold,
+	ID_Blur,
+    ID_Negative,
 	EFFECTS_COUNT
 };
 
@@ -100,7 +99,6 @@ public:
     void Posterize();
     void BorderDetect();
     void showStream(wxCommandEvent& evt);
-
 
 private:
     int rotation;

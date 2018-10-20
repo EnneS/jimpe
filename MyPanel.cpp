@@ -23,10 +23,17 @@ MyPanel::MyPanel(wxWindow *parent) : wxPanel(parent), rotation(0), thread(this, 
 
     m_image = new MyImage(buffer);
     m_image->Reload();
+    wxCommandEvent ev;
+
+    thread.ForceRead();
+    showStream(ev);
+
 
 	thread.Create();
 	thread.Run();
+
 }
+
 
 MyPanel::~MyPanel(void){
     if(m_image){

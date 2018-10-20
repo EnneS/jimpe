@@ -68,6 +68,8 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 
 	CreateStatusBar();
     SetStatusText(wxT("Mon visualiseur d'image"));
+
+    SetClientSize(m_panel->GetSize());
 }
 
 void MyFrame::OnOpen(wxCommandEvent& event)

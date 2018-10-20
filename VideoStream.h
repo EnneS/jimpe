@@ -12,6 +12,7 @@ class VideoStream : public wxThread
     public:
         VideoStream(MyPanel* p, DoubleBuffer& b);
         ~VideoStream();
+        void ForceRead();
     private:
         cv::VideoCapture stream;
         MyPanel* panel;

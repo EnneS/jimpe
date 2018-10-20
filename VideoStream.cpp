@@ -35,3 +35,9 @@ void* VideoStream::Entry(){
     }
     return NULL ;	// the thread is finished in a clean way
 }
+void VideoStream::ForceRead(){
+    cv::Mat* frame = buffer.GetBack();
+    stream >> *frame;
+    cv::cvtColor(*frame, *frame, CV_BGR2RGB);
+    buffer.FlagBack();
+}
