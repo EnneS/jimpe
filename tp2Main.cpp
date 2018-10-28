@@ -6,6 +6,7 @@
 #ifndef WX_PRECOMP
 #endif // WX_PRECOMP
 #include <wx/wx.h>
+#include <algorithm>
 #include "MyImage.h"
 #include "MyFrame.h"
 

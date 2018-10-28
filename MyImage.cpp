@@ -70,6 +70,20 @@ void MyImage::BorderDetect(){
     *img = dst;
 }
 
+void MyImage::Quantization(KDTree* palette){
+    cv::Vec<unsigned char, 3> color;
+    cv::Mat* img = image.GetFront();
+    unsigned char* data = img->data;
+    size_t s = img->rows * img->cols * 3;
+    //s = 40000;
+    for(size_t i = 0; i < s; i+=3){
+        color = palette->getColor(data + i, 4);
+        data[i] = color[0];
+        data[i+1] = color[1];
+        data[i+2] = color[2];
+    }
+}
+
 void MyImage::Reload(){
     cv::Mat* img = image.GetFront();
     SetData(img->data, img->cols, img->rows, true);

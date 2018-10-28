@@ -4,6 +4,7 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
 #include "DoubleBuffer.h"
+#include "KDTree.h"
 class MyImage : public wxImage
 {
     public:
@@ -21,6 +22,7 @@ class MyImage : public wxImage
         void Posterize(int nb = 1);
         void Reload();
         void BorderDetect();
+        void Quantization(KDTree* palette);
     private:
         DoubleBuffer& image;
 };

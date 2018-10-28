@@ -4,6 +4,8 @@
 #include <cstring>
 
 wxDEFINE_EVENT(NEW_FRAME_EVENT, wxCommandEvent);
+wxDEFINE_EVENT(END_TASK_GEN_PALETTE, wxCommandEvent);
+
 
 void MyPanel::onPaint(wxPaintEvent &WXUNUSED(event)){
     wxPaintDC dc(this);
@@ -14,8 +16,13 @@ void MyPanel::onPaint(wxPaintEvent &WXUNUSED(event)){
 }
 
 MyPanel::MyPanel(wxWindow *parent) : wxPanel(parent), rotation(0), thread(this, buffer){
-    Bind(wxEVT_PAINT, &MyPanel::onPaint, this) ;
+    Bind(wxEVT_PAINT, &MyPanel::onPaint, this);
     Bind(NEW_FRAME_EVENT, &MyPanel::showStream, this);
+    Bind(END_TASK_GEN_PALETTE, &MyPanel::paletteGenerated, this);
+
+    current_palette = nullptr;
+    processing_palette = nullptr;
+    palette_thread = nullptr;
 
     for(int i = 0; i < EFFECTS_COUNT; i++){
         effects[i] = Effect(i, 0);
@@ -148,7 +155,10 @@ void MyPanel::BorderDetect(){
 
 
 }
+void MyPanel::debug(int i){
+    debug_var = i;
 
+}
 void MyPanel::showStream(wxCommandEvent& evt){
 
     buffer.FlagFront();
@@ -160,4 +170,47 @@ void MyPanel::showStream(wxCommandEvent& evt){
     Refresh();
     SetSize(m_image->GetSize());
 }
+
+void MyPanel::generatePalette(){
+    deleteThread();
+
+    if(processing_palette){
+        delete processing_palette;
+        processing_palette = nullptr;
+    }
+
+    palette_thread = new GeneratePaletteThread(this, buffer, processing_palette);
+
+    palette_thread->Create();
+    palette_thread->Run();
+}
+
+void MyPanel::paletteGenerated(wxCommandEvent& evt){
+
+    if(current_palette){
+        delete current_palette;
+    }
+    palette_thread = nullptr;
+    current_palette = processing_palette;
+    processing_palette = nullptr;
+
+    effects[ID_Quantization].setPointer(current_palette);
+    effects[ID_Quantization].setActive(true);
+}
+
+void MyPanel::deleteThread(){
+    {
+        wxCriticalSectionLocker enter(palette_thread_cs);
+        if (palette_thread)
+        {
+            palette_thread->Delete();
+        }
+    }
+}
+
+
+
+
+
+
 

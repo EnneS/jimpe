@@ -3,6 +3,7 @@
 #include <wx/wx.h>
 #include "MyPanel.h"
 #include "RotatePanel.h"
+#include "QuantizationPanel.h"
 
 class MyFrame: public wxFrame
 {
@@ -15,7 +16,7 @@ private:
 	void OnExit(wxCommandEvent& event);
     void OnAbout(wxCommandEvent& event);
     void OnRotate(wxCommandEvent& event);
-    void OnIdle(wxIdleEvent& event);
+    void OnGeneratePalette(wxCommandEvent& event);
     wxPanel *m_process_panel;
     MyPanel *m_panel; // the panel inside the main frame
     wxToolBar *m_toolbar;

@@ -8,6 +8,7 @@
 #include "MyRotateDialog.h"
 #include "MyPosterizeDialog.h"
 #include "VideoStream.h"
+#include "GeneratePaletteThread.h"
 #include <iostream>
 
 enum	// énumération. Elle gère la numérotation automatiquement
@@ -20,6 +21,8 @@ enum	// énumération. Elle gère la numérotation automatiquement
 	ID_Threshold,
 	ID_Blur,
     ID_Negative,
+    ID_Quantization,
+
 	EFFECTS_COUNT
 };
 
@@ -28,9 +31,10 @@ private:
     bool active;
     unsigned int parameter;
     unsigned int type;
+    void* pointer;
 
 public:
-    Effect(int type_ = 0, int param = 0) : active(false), parameter(param), type(type_)
+    Effect(int type_ = 0, int param = 0, void* ptr = nullptr) : active(false), parameter(param), type(type_), pointer(ptr)
     {}
     bool toggle(){
         return active = !active;
@@ -43,6 +47,9 @@ public:
     }
     void setParam(unsigned int param){
         parameter = param;
+    }
+    void setPointer(void* ptr){
+        pointer = ptr;
     }
     void apply(MyImage* image){
         if(!active)
@@ -79,6 +86,9 @@ public:
             case ID_BorderDetect:
                 image->BorderDetect();
                 break;
+            case ID_Quantization:
+                image->Quantization((KDTree*)pointer);
+                break;
         }
     }
 };
@@ -99,14 +109,23 @@ public:
     void Posterize();
     void BorderDetect();
     void showStream(wxCommandEvent& evt);
+    void generatePalette();
+    void paletteGenerated(wxCommandEvent& evt);
+    void debug(int i);
 
 private:
+    void deleteThread();
+    wxCriticalSection palette_thread_cs;
     int rotation;
     wxBitmap m_bitmap;	// used to display the image
     Effect effects[EFFECTS_COUNT];
     MyImage *m_image;		// used to load and process the image
     DoubleBuffer buffer;
     VideoStream thread;
+    int debug_var;
+    KDTree* current_palette;
+    KDTree* processing_palette;
+    GeneratePaletteThread* palette_thread;
 
 };
 

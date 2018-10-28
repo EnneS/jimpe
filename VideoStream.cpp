@@ -18,7 +18,10 @@ void* VideoStream::Entry(){
             wxLongLong t = wxGetLocalTimeMillis();
             *((long*)((void*)(&currentTime))) = t.GetLo();
             *((long*)((void*)(&currentTime))+1) = t.GetHi();
+
+
             wxMilliSleep(std::max(0LL, frameDelay + time - currentTime));
+
             cv::Mat* frame = buffer.GetBack();
             stream >> *frame;
             cv::cvtColor(*frame, *frame, CV_BGR2RGB);

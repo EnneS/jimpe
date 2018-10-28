@@ -1,12 +1,15 @@
 #include "MyFrame.h"
 
 wxDEFINE_EVENT(DO_ROTATE, wxCommandEvent);
+wxDEFINE_EVENT(START_TASK_GEN_PALETTE, wxCommandEvent);
 
 MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 : wxFrame(NULL, wxID_ANY, title, pos, size)
 {
     m_panel = new MyPanel(this);
+    m_panel->debug(1);
     m_panel->SetBackgroundColour(wxColour(wxT("RED")));
+    m_panel->debug(2);
     /*
     * TOOLBAR
     */
@@ -32,7 +35,7 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     /*
     * MENUBAR
     */
-
+    m_panel->debug(3);
 	wxMenu *menuFile = new wxMenu ;
 
     menuFile->Append(wxID_ABOUT) ;
@@ -58,8 +61,10 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Posterize);
 	menuProcess->Append(ID_BorderDetect, wxT("Détéction de bords \tCtrl-D"), _("Applique une détéction de bords a l\'image")) ;
 	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_BorderDetect);
+    menuProcess->Append(ID_Quantization, wxT("Quantization \tCtrl-Q"), _("Applique une quantization a l\'image")) ;
+	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Quantization);
 
-    //Connect( wxID_ANY, wxEVT_IDLE, wxIdleEventHandler(MyFrame::OnIdle) );
+    m_panel->debug(4);
 
 	wxMenuBar *menuBar = new wxMenuBar ;
 	menuBar->Append( menuFile, wxT("File" )) ;
@@ -68,8 +73,9 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 
 	CreateStatusBar();
     SetStatusText(wxT("Mon visualiseur d'image"));
-
+    m_panel->debug(5);
     SetClientSize(m_panel->GetSize());
+    m_panel->debug(6);
 }
 
 void MyFrame::OnOpen(wxCommandEvent& event)
@@ -127,7 +133,24 @@ void MyFrame::OnProcess(wxCommandEvent& event)
         case ID_Negative : m_panel->Negative(); break;
         case ID_Threshold : m_panel->Threshold(); break;
         case ID_Posterize : m_panel->Posterize(); break;
-        case ID_BorderDetect : m_panel->BorderDetect();
+        case ID_BorderDetect : m_panel->BorderDetect(); break;
+        case ID_Quantization:
+            if(m_process_panel){
+                delete m_process_panel;
+                m_process_panel = nullptr;
+            }
+            if(currentProcessPanel != ID_Quantization){
+                currentProcessPanel = ID_Quantization;
+                m_process_panel = new QuantizationPanel(this);
+                m_panel->SetPosition(wxPoint(m_process_panel->GetSize().GetWidth(),0));
+                Bind(START_TASK_GEN_PALETTE, &MyFrame::OnGeneratePalette, this);
+                SetClientSize(m_process_panel->GetSize().GetWidth() + m_panel->GetSize().GetWidth(), std::max(m_process_panel->GetSize().GetHeight(), m_panel->GetSize().GetHeight()));
+            } else {
+                currentProcessPanel = -1;
+                m_panel->SetPosition(wxPoint(0,0));
+            }
+
+            break;
     }
 
 }
@@ -136,4 +159,9 @@ void MyFrame::OnRotate(wxCommandEvent& event){
     m_panel->Rotate(event.GetInt());
     if(event.GetInt()!= 2)
         SetClientSize(m_process_panel->GetSize().GetWidth() + std::max(m_process_panel->GetSize().GetHeight(), m_panel->GetSize().GetHeight()), m_panel->GetSize().GetWidth());
+}
+
+void MyFrame::OnGeneratePalette(wxCommandEvent& event){
+    m_panel->generatePalette();
+
 }

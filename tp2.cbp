@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
+					<Add option="-pg" />
 					<Add option="-g" />
 					<Add option="-std=c++1y" />
 					<Add option="`pkg-config --cflags`" />
@@ -21,6 +22,7 @@
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
+					<Add option="-pg" />
 					<Add option="`pkg-config --libs opencv`" />
 				</Linker>
 			</Target>
@@ -32,13 +34,11 @@
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-g" />
 					<Add directory="./" />
 					<Add directory="../tp2" />
 					<Add directory="include" />
 				</Compiler>
-				<Linker>
-					<Add option="-s" />
-				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
@@ -55,6 +55,10 @@
 		</Linker>
 		<Unit filename="DoubleBuffer.cpp" />
 		<Unit filename="DoubleBuffer.h" />
+		<Unit filename="GeneratePaletteThread.cpp" />
+		<Unit filename="GeneratePaletteThread.h" />
+		<Unit filename="KDTree.cpp" />
+		<Unit filename="KDTree.h" />
 		<Unit filename="MyFrame.cpp" />
 		<Unit filename="MyFrame.h" />
 		<Unit filename="MyImage.cpp" />
@@ -67,6 +71,8 @@
 		<Unit filename="MyRotateDialog.h" />
 		<Unit filename="MyThresholdDialog.cpp" />
 		<Unit filename="MyThresholdDialog.h" />
+		<Unit filename="QuantizationPanel.cpp" />
+		<Unit filename="QuantizationPanel.h" />
 		<Unit filename="RotatePanel.cpp" />
 		<Unit filename="RotatePanel.h" />
 		<Unit filename="VideoStream.cpp" />
