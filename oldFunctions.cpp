@@ -1,4 +1,5 @@
-/*MyImage* MyImage::Blur(int amount){
+/*
+MyImage* MyImage::Blur(int amount){
     this->wxImage::Blur(amount);
     return this;
 }
@@ -95,7 +96,6 @@ MyImage* MyImage::Rotate90(bool clockwise = true){
     int indice = 0;
     if(clockwise){
         for(unsigned long i = 0; i < length/3; i++){
-                // filtre 3x3 rotated LCD pop rgb v2 : indice = (i%height)*full_width + (i*3)/height;
 
                 indice = length - ((i%height)*width + width - i/height )*3;
                 dataBuffer[3*i] = data[indice];
@@ -105,7 +105,6 @@ MyImage* MyImage::Rotate90(bool clockwise = true){
         }
     } else {
          for(unsigned long i = 0; i < length/3; i++){
-                // filtre 3x3 ecran pop rgb v2 : indice = (i%height)*full_width + (i*3)/height;
 
                 indice = ((i%height)*width + width - 1 - i/height )*3;
                 dataBuffer[3*i] = data[indice];
@@ -115,12 +114,6 @@ MyImage* MyImage::Rotate90(bool clockwise = true){
         }
     }
 
-    /*for(unsigned long i = 0; i < length; i+=3){
-        dataBuffer[i] = data[((i+GetWidth()+(GetWidth()-1)*(i-1))%(GetWidth()*GetHeight()*3-1))-GetWidth()];
-        dataBuffer[i+1] = data[((i+1+GetWidth()+(GetWidth()-1)*(i))%(GetWidth()*GetHeight()*3-1))-GetWidth()];
-        dataBuffer[i+2] = data[((i+2+GetWidth()+(GetWidth()-1)*(i+1))%(GetWidth()*GetHeight()*3-1))-GetWidth()];
-    }*/
-/*
     SetData(dataBuffer, GetHeight(), GetWidth());
     return this;
 }
@@ -142,4 +135,5 @@ MyImage* MyImage::Posterize(int nb){
 
     }
     return this;
-}*/
+}
+*/

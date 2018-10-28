@@ -15,7 +15,8 @@ void MyPanel::onPaint(wxPaintEvent &WXUNUSED(event)){
     }
 }
 
-MyPanel::MyPanel(wxWindow *parent) : wxPanel(parent), rotation(0), thread(this, buffer){
+MyPanel::MyPanel(wxWindow *parent) : wxPanel(parent), rotation(0){
+    thread = new VideoStream(this, buffer);
     Bind(wxEVT_PAINT, &MyPanel::onPaint, this);
     Bind(NEW_FRAME_EVENT, &MyPanel::showStream, this);
     Bind(END_TASK_GEN_PALETTE, &MyPanel::paletteGenerated, this);
@@ -32,21 +33,28 @@ MyPanel::MyPanel(wxWindow *parent) : wxPanel(parent), rotation(0), thread(this, 
     m_image->Reload();
     wxCommandEvent ev;
 
-    thread.ForceRead();
+    thread->ForceRead();
+    buffer.FlagFront();
     showStream(ev);
 
 
-	thread.Create();
-	thread.Run();
+	thread->Create();
+	thread->Run();
+
 
 }
 
 
 MyPanel::~MyPanel(void){
+
+    thread->Delete();
+    deleteThread();
+
     if(m_image){
         delete m_image;
         m_image = nullptr;
     }
+
 }
 
 
@@ -161,30 +169,33 @@ void MyPanel::debug(int i){
 }
 void MyPanel::showStream(wxCommandEvent& evt){
 
-    buffer.FlagFront();
+
+
     for(int i = 0; i < EFFECTS_COUNT; i++){
         effects[i].apply(m_image);
     }
+
+    std::cout << "display" << std::endl;
     m_image->Reload();
 
     Refresh();
     SetSize(m_image->GetSize());
+    buffer.FlagFront();
 }
 
-void MyPanel::generatePalette(){
+void MyPanel::generatePalette(int nb_colors){
     deleteThread();
 
     if(processing_palette){
         delete processing_palette;
         processing_palette = nullptr;
     }
-
-    palette_thread = new GeneratePaletteThread(this, buffer, processing_palette);
+    effects[ID_Quantization].setParam(nb_colors);
+    palette_thread = new GeneratePaletteThread(this, buffer, processing_palette, nb_colors);
 
     palette_thread->Create();
     palette_thread->Run();
 }
-
 void MyPanel::paletteGenerated(wxCommandEvent& evt){
 
     if(current_palette){

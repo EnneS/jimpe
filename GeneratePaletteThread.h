@@ -11,7 +11,7 @@ class MyPanel;
 class GeneratePaletteThread : public wxThread
 {
     public:
-        GeneratePaletteThread(MyPanel* p, DoubleBuffer& b, KDTree*& t);
+        GeneratePaletteThread(MyPanel* p, DoubleBuffer& b, KDTree*& t, int nb_colors);
         virtual ~GeneratePaletteThread();
 
     protected:

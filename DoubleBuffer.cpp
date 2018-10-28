@@ -52,7 +52,9 @@ void DoubleBuffer::FlagFront(){
 }
 
 void DoubleBuffer::Swap(){
+
     if(state == 3){
+            std::cout << "swap" << std::endl;
         current = 1 - current;
         state = 0;
         condition_back.Signal();

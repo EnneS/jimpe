@@ -1742,7 +1742,7 @@
 1539756073 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/WebcamStream.cpp
 	"WebcamStream.h"
 
-1540507304 source:/users/info/etu-s4/royetju/Jimpe/MyFrame.cpp
+1540744794 source:/users/info/etu-s4/royetju/Jimpe/MyFrame.cpp
 	"MyFrame.h"
 
 1540502745 /users/info/etu-s4/royetju/Jimpe/MyFrame.h
@@ -1751,7 +1751,7 @@
 	"RotatePanel.h"
 	"QuantizationPanel.h"
 
-1540553302 /users/info/etu-s4/royetju/Jimpe/MyPanel.h
+1540746114 /users/info/etu-s4/royetju/Jimpe/MyPanel.h
 	<wx/wx.h>
 	<opencv2/opencv.hpp>
 	"MyImage.h"
@@ -1762,7 +1762,7 @@
 	"GeneratePaletteThread.h"
 	<iostream>
 
-1540501325 /users/info/etu-s4/royetju/Jimpe/MyImage.h
+1540744068 /users/info/etu-s4/royetju/Jimpe/MyImage.h
 	<wx/wx.h>
 	<iostream>
 	<opencv2/opencv.hpp>
@@ -1783,11 +1783,11 @@
 1539690474 /users/info/etu-s4/royetju/Jimpe/WebcamStream.h
 	"opencv2/opencv.hpp"
 
-1540688691 source:/users/info/etu-s4/royetju/Jimpe/MyImage.cpp
+1540739892 source:/users/info/etu-s4/royetju/Jimpe/MyImage.cpp
 	"MyImage.h"
 	<cstdlib>
 
-1540686900 source:/users/info/etu-s4/royetju/Jimpe/MyPanel.cpp
+1540745609 source:/users/info/etu-s4/royetju/Jimpe/MyPanel.cpp
 	"MyPanel.h"
 	<thread>
 	<chrono>
@@ -5387,7 +5387,7 @@
 	<wx/wx.h>
 	<opencv2/opencv.hpp>
 
-1539894764 source:/users/info/etu-s4/royetju/Jimpe/DoubleBuffer.cpp
+1540735688 source:/users/info/etu-s4/royetju/Jimpe/DoubleBuffer.cpp
 	"DoubleBuffer.h"
 
 1539815401 /users/info/etu-s4/royetju/Jimpe/DoubleBuffer.h
@@ -5405,10 +5405,10 @@
 1540681291 source:/users/info/etu-s4/royetju/Jimpe/VideoStream.cpp
 	"VideoStream.h"
 
-1540688678 source:/users/info/etu-s4/royetju/Jimpe/GeneratePaletteThread.cpp
+1540740790 source:/users/info/etu-s4/royetju/Jimpe/GeneratePaletteThread.cpp
 	"GeneratePaletteThread.h"
 
-1540674170 /users/info/etu-s4/royetju/Jimpe/GeneratePaletteThread.h
+1540740807 /users/info/etu-s4/royetju/Jimpe/GeneratePaletteThread.h
 	"KDTree.h"
 	<wx/wx.h>
 	"DoubleBuffer.h"
@@ -5423,9 +5423,16 @@
 1540688344 source:/users/info/etu-s4/royetju/Jimpe/KDTree.cpp
 	"KDTree.h"
 
-1540501782 source:/users/info/etu-s4/royetju/Jimpe/QuantizationPanel.cpp
+1540744310 source:/users/info/etu-s4/royetju/Jimpe/QuantizationPanel.cpp
 	"QuantizationPanel.h"
 
-1540501536 /users/info/etu-s4/royetju/Jimpe/QuantizationPanel.h
+1540744116 /users/info/etu-s4/royetju/Jimpe/QuantizationPanel.h
 	<wx/wx.h>
+	<wx/valnum.h>
+
+1528706438 /usr/include/wx-3.0/wx/valnum.h
+	"wx/defs.h"
+	"wx/textentry.h"
+	"wx/validate.h"
+	<limits>
 

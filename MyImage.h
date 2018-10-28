@@ -22,7 +22,7 @@ class MyImage : public wxImage
         void Posterize(int nb = 1);
         void Reload();
         void BorderDetect();
-        void Quantization(KDTree* palette);
+        void Quantization(KDTree* palette, int nb_colors);
     private:
         DoubleBuffer& image;
 };

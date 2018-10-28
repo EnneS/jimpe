@@ -162,6 +162,6 @@ void MyFrame::OnRotate(wxCommandEvent& event){
 }
 
 void MyFrame::OnGeneratePalette(wxCommandEvent& event){
-    m_panel->generatePalette();
+    m_panel->generatePalette(event.GetInt());
 
 }

@@ -12,7 +12,12 @@ MyImage::~MyImage()
 }
 
 void MyImage::Blur(int amount){
+    int kernel_size = amount*2 - 1;
+    cv::Mat* img = image->GetFront();
+    cv::Mat tmp;
 
+    cv::GaussianBlur(*img, tmp, cv::Size(kernel_size, kernel_size), 0.0, 0.0, BORDER_DEFAULT);
+    *img = tmp;
 }
 void MyImage::Negative(){
     cv::Mat* img = image.GetFront();
@@ -23,6 +28,26 @@ void MyImage::Desaturate(){
     cv::cvtColor(*img, *img, CV_RGB2GRAY);
     cv::cvtColor(*img, *img, CV_GRAY2RGB);
 }
+void MyImage::Saturate(){
+    Posterize(1);
+}
+void MyImage::Saturation(double factor){
+    cv::Mat original = image.GetFront()->clone();
+    cv::Mat* img = image->GetFront();
+    if(factor < 0.0){
+        Desaturate();
+        factor = -factor;
+    }
+    else{
+        Saturate();
+    }
+
+    if(factor > 1.0)
+        factor = 1.0;
+
+    cv::addWeighted(*img, factor, original, 1.0 - factor, 0.0, *img);
+}
+
 void MyImage::Threshold(int seuil){
     cv::Mat* img = image.GetFront();
     cv::threshold(*img, *img, (double)seuil, (double)255, CV_THRESH_BINARY);
@@ -70,14 +95,15 @@ void MyImage::BorderDetect(){
     *img = dst;
 }
 
-void MyImage::Quantization(KDTree* palette){
+void MyImage::Quantization(KDTree* palette, int nb_colors){
+    std::cout << "quant" << std::endl;
     cv::Vec<unsigned char, 3> color;
     cv::Mat* img = image.GetFront();
     unsigned char* data = img->data;
     size_t s = img->rows * img->cols * 3;
     //s = 40000;
     for(size_t i = 0; i < s; i+=3){
-        color = palette->getColor(data + i, 4);
+        color = palette->getColor(data + i, nb_colors);
         data[i] = color[0];
         data[i+1] = color[1];
         data[i+2] = color[2];

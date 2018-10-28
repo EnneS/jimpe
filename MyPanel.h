@@ -16,12 +16,15 @@ enum	// énumération. Elle gère la numérotation automatiquement
 	ID_MiroirH = 0,
 	ID_MiroirV,
 	ID_Rotate,
+	ID_Quantization,
 	ID_BorderDetect,
 	ID_Posterize,
-	ID_Threshold,
-	ID_Blur,
     ID_Negative,
-    ID_Quantization,
+    ID_Hue,
+    ID_Contrast,
+    ID_Saturation,
+    ID_Blur,
+    ID_Threshold,
 
 	EFFECTS_COUNT
 };
@@ -29,12 +32,13 @@ enum	// énumération. Elle gère la numérotation automatiquement
 class Effect{
 private:
     bool active;
-    unsigned int parameter;
+    int parameter;
+    double doubleParameter;
     unsigned int type;
     void* pointer;
 
 public:
-    Effect(int type_ = 0, int param = 0, void* ptr = nullptr) : active(false), parameter(param), type(type_), pointer(ptr)
+    Effect(int type_ = 0, int param = 0, void* ptr = nullptr, double db = 0.0) : active(false), parameter(param), type(type_), pointer(ptr), doubleParameter(db)
     {}
     bool toggle(){
         return active = !active;
@@ -45,8 +49,11 @@ public:
     void setActive(bool active_){
         active = active_;
     }
-    void setParam(unsigned int param){
+    void setParam(int param){
         parameter = param;
+    }
+    void setDoubleParam(bool db){
+        doubleParameter = db;
     }
     void setPointer(void* ptr){
         pointer = ptr;
@@ -87,7 +94,13 @@ public:
                 image->BorderDetect();
                 break;
             case ID_Quantization:
-                image->Quantization((KDTree*)pointer);
+                image->Quantization((KDTree*)pointer, parameter);
+                break;
+            case ID_Blur:
+                image->Blur(parameter);
+                break;
+            case ID_Saturation:
+                image->Saturation(doubleParameter);
                 break;
         }
     }
@@ -108,10 +121,16 @@ public:
     void Threshold();
     void Posterize();
     void BorderDetect();
+    void Desaturate();
+    void Saturate();
+    void Saturation(double factor);
+
     void showStream(wxCommandEvent& evt);
-    void generatePalette();
+    void generatePalette(int nb_colors);
     void paletteGenerated(wxCommandEvent& evt);
+
     void debug(int i);
+
 
 private:
     void deleteThread();
@@ -121,7 +140,7 @@ private:
     Effect effects[EFFECTS_COUNT];
     MyImage *m_image;		// used to load and process the image
     DoubleBuffer buffer;
-    VideoStream thread;
+    VideoStream* thread;
     int debug_var;
     KDTree* current_palette;
     KDTree* processing_palette;
