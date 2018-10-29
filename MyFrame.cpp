@@ -36,6 +36,7 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     wxBitmap posterisationIcon(wxT("posterisation.png"), wxBITMAP_TYPE_PNG);
     wxBitmap quantizationIcon(wxT("quantization.png"), wxBITMAP_TYPE_PNG);
     wxBitmap saturationIcon(wxT("saturation.png"), wxBITMAP_TYPE_PNG);
+    wxBitmap thresholdIcon(wxT("threshold.png"), wxBITMAP_TYPE_PNG);
 
     // Ajout des tools à la toolbar
     m_toolbar->AddTool(ID_Negative, wxT("Negatif"), negativeIcon);
@@ -43,6 +44,7 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     m_toolbar->AddTool(ID_MiroirV, wxT("Miroir Horizontal"), invertVIcon);
     m_toolbar->AddTool(ID_Rotate, wxT("Rotation"), rotateIcon);
 
+    m_toolbar->AddTool(ID_Threshold, wxT("Détection des contours"), thresholdIcon);
     m_toolbar->AddTool(ID_BorderDetect, wxT("Détection des contours"), contourIcon);
     m_toolbar->AddTool(ID_Blur, wxT("Flou"), blurIcon);
     m_toolbar->AddTool(ID_BrightnessContrast, wxT("Contraste"), contrasteIcon);
@@ -53,7 +55,6 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     m_toolbar->AddTool(ID_Quantization, wxT("Quantization"), quantizationIcon);
 
     // Activation de la toolbar
-    m_toolbar->SetToolBitmapSize(wxSize(32,32));
     m_toolbar->Realize();
     SetToolBar(m_toolbar);
 
@@ -84,7 +85,7 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Threshold);
     menuProcess->Append(ID_Posterize, wxT("Postérisation \tCtrl-P"), _("Applique une posterisation a l\'image")) ;
 	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Posterize);
-	menuProcess->Append(ID_BorderDetect, wxT("Détéction de bords \tCtrl-D"), _("Applique une détéction de bords a l\'image")) ;
+	menuProcess->Append(ID_BorderDetect, wxT("Detection de bords \tCtrl-D"), _("Applique une détéction de bords a l\'image")) ;
 	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_BorderDetect);
 	menuProcess->Append(ID_Saturation, wxT("Saturation \tCtrl-S"), _("Applique une saturation a l\'image")) ;
 	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Saturation);

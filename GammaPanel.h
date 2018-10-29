@@ -13,6 +13,7 @@ class GammaPanel : public wxPanel
         void sendCancelMessage(wxCommandEvent& event);
         wxSlider* m_gamma;
         wxButton* m_cancelButton;
+        wxStaticText* m_title;
     protected:
 
     private:

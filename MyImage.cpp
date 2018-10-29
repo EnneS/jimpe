@@ -62,11 +62,11 @@ void MyImage::Saturation(int amount){
 void MyImage::Hue(int rotation){
     cv::Mat* img = image.GetFront();
     cv::cvtColor(*img, *img, CV_RGB2HSV);
-    int hue;
+
     unsigned char* data = img->data;
     size_t s = img->rows * img->cols * 3;
     for(size_t i = 0; i < s; i+=3){
-        data[i] = rotation + data[i];
+        data[i] = (data[i] + rotation) % 180;
     }
 
     cv::cvtColor(*img, *img, CV_HSV2RGB);

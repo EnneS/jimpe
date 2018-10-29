@@ -1742,7 +1742,7 @@
 1539756073 source:/users/info/etu-s4/souliern/M4105C/codeblocks/tp2/WebcamStream.cpp
 	"WebcamStream.h"
 
-1540824016 source:/users/info/etu-s4/royetju/Jimpe/MyFrame.cpp
+1540826237 source:/users/info/etu-s4/royetju/Jimpe/MyFrame.cpp
 	"MyFrame.h"
 
 1540824016 /users/info/etu-s4/royetju/Jimpe/MyFrame.h
@@ -1808,7 +1808,7 @@
 	<wx/intl.h>
 	<wx/string.h>
 
-1539690474 source:/users/info/etu-s4/royetju/Jimpe/MyThresholdDialog.cpp
+1540826237 source:/users/info/etu-s4/royetju/Jimpe/MyThresholdDialog.cpp
 	"MyThresholdDialog.h"
 
 1539690475 source:/users/info/etu-s4/royetju/Jimpe/tp2App.cpp
@@ -5316,10 +5316,10 @@
 1523416704 c:\opencv\build\include\opencv2\highgui\highgui.hpp
 	"opencv2/highgui.hpp"
 
-1539690479 /users/info/etu-s4/royetju/Jimpe/RotatePanel.h
+1540826237 /users/info/etu-s4/royetju/Jimpe/RotatePanel.h
 	<wx/wx.h>
 
-1539802034 source:/users/info/etu-s4/royetju/Jimpe/RotatePanel.cpp
+1540826237 source:/users/info/etu-s4/royetju/Jimpe/RotatePanel.cpp
 	"RotatePanel.h"
 
 1539814535 /users/info/etu-s4/royetju/Jimpe/include/VideoStream.h
@@ -5430,10 +5430,10 @@
 1540825420 source:/users/info/etu-s4/royetju/Jimpe/KDTree.cpp
 	"KDTree.h"
 
-1540821551 source:/users/info/etu-s4/royetju/Jimpe/QuantizationPanel.cpp
+1540826237 source:/users/info/etu-s4/royetju/Jimpe/QuantizationPanel.cpp
 	"QuantizationPanel.h"
 
-1540821551 /users/info/etu-s4/royetju/Jimpe/QuantizationPanel.h
+1540826237 /users/info/etu-s4/royetju/Jimpe/QuantizationPanel.h
 	<wx/wx.h>
 	<wx/valnum.h>
 
@@ -5503,7 +5503,7 @@
 1540815884 source:/users/info/etu-s4/souliern/jimpe/jimpe/KDTree.cpp
 	"KDTree.h"
 
-1540823286 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyFrame.cpp
+1540824627 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyFrame.cpp
 	"MyFrame.h"
 
 1540823494 /users/info/etu-s4/souliern/jimpe/jimpe/MyFrame.h
@@ -5518,10 +5518,10 @@
 	"GammaPanel.h"
 	"HuePanel.h"
 
-1540815884 /users/info/etu-s4/souliern/jimpe/jimpe/RotatePanel.h
+1540825170 /users/info/etu-s4/souliern/jimpe/jimpe/RotatePanel.h
 	<wx/wx.h>
 
-1540820513 /users/info/etu-s4/souliern/jimpe/jimpe/QuantizationPanel.h
+1540825167 /users/info/etu-s4/souliern/jimpe/jimpe/QuantizationPanel.h
 	<wx/wx.h>
 	<wx/valnum.h>
 
@@ -5544,15 +5544,15 @@
 	<wx/intl.h>
 	<wx/string.h>
 
-1540815884 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyThresholdDialog.cpp
+1540825480 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyThresholdDialog.cpp
 	"MyThresholdDialog.h"
 
 1540815885 source:/users/info/etu-s4/souliern/jimpe/jimpe/oldFunctions.cpp
 
-1540820643 source:/users/info/etu-s4/souliern/jimpe/jimpe/QuantizationPanel.cpp
+1540825394 source:/users/info/etu-s4/souliern/jimpe/jimpe/QuantizationPanel.cpp
 	"QuantizationPanel.h"
 
-1540815884 source:/users/info/etu-s4/souliern/jimpe/jimpe/RotatePanel.cpp
+1540825308 source:/users/info/etu-s4/souliern/jimpe/jimpe/RotatePanel.cpp
 	"RotatePanel.h"
 
 1540815885 source:/users/info/etu-s4/souliern/jimpe/jimpe/tp2App.cpp
@@ -5568,75 +5568,75 @@
 1540816000 source:/users/info/etu-s4/souliern/jimpe/jimpe/VideoStream.cpp
 	"VideoStream.h"
 
-1540818212 source:/users/info/etu-s4/souliern/jimpe/jimpe/ThresholdPanel.cpp
+1540825447 source:/users/info/etu-s4/souliern/jimpe/jimpe/ThresholdPanel.cpp
 	"ThresholdPanel.h"
 
-1540818136 /users/info/etu-s4/souliern/jimpe/jimpe/ThresholdPanel.h
+1540825174 /users/info/etu-s4/souliern/jimpe/jimpe/ThresholdPanel.h
 	<wx/wx.h>
 
-1540819670 /users/info/etu-s4/souliern/jimpe/jimpe/BlurPanel.h
+1540824898 /users/info/etu-s4/souliern/jimpe/jimpe/BlurPanel.h
 	<wx/wx.h>
 
-1540819674 source:/users/info/etu-s4/souliern/jimpe/jimpe/BlurPanel.cpp
+1540825551 source:/users/info/etu-s4/souliern/jimpe/jimpe/BlurPanel.cpp
 	"BlurPanel.h"
 
-1540819855 /users/info/etu-s4/souliern/jimpe/jimpe/PosterizePanel.h
+1540825158 /users/info/etu-s4/souliern/jimpe/jimpe/PosterizePanel.h
 	<wx/wx.h>
 
-1540820340 source:/users/info/etu-s4/souliern/jimpe/jimpe/PosterizePanel.cpp
+1540825449 source:/users/info/etu-s4/souliern/jimpe/jimpe/PosterizePanel.cpp
 	"PosterizePanel.h"
 
-1540821443 /users/info/etu-s4/souliern/jimpe/jimpe/SaturationPanel.h
+1540825172 /users/info/etu-s4/souliern/jimpe/jimpe/SaturationPanel.h
 	<wx/wx.h>
 
-1540822580 source:/users/info/etu-s4/souliern/jimpe/jimpe/SaturationPanel.cpp
+1540825445 source:/users/info/etu-s4/souliern/jimpe/jimpe/SaturationPanel.cpp
 	"SaturationPanel.h"
 
-1540822865 /users/info/etu-s4/souliern/jimpe/jimpe/GammaPanel.h
+1540825190 /users/info/etu-s4/souliern/jimpe/jimpe/GammaPanel.h
 	<wx/wx.h>
 
-1540823397 source:/users/info/etu-s4/souliern/jimpe/jimpe/GammaPanel.cpp
+1540825458 source:/users/info/etu-s4/souliern/jimpe/jimpe/GammaPanel.cpp
 	"GammaPanel.h"
 
-1540823465 source:/users/info/etu-s4/souliern/jimpe/jimpe/HuePanel.cpp
+1540825537 source:/users/info/etu-s4/souliern/jimpe/jimpe/HuePanel.cpp
 	"HuePanel.h"
 
-1540823417 /users/info/etu-s4/souliern/jimpe/jimpe/HuePanel.h
+1540825293 /users/info/etu-s4/souliern/jimpe/jimpe/HuePanel.h
 	<wx/wx.h>
 
-1540821551 source:/users/info/etu-s4/royetju/Jimpe/BlurPanel.cpp
+1540826237 source:/users/info/etu-s4/royetju/Jimpe/BlurPanel.cpp
 	"BlurPanel.h"
 
-1540821551 /users/info/etu-s4/royetju/Jimpe/BlurPanel.h
+1540826237 /users/info/etu-s4/royetju/Jimpe/BlurPanel.h
 	<wx/wx.h>
 
-1540824016 source:/users/info/etu-s4/royetju/Jimpe/GammaPanel.cpp
+1540826237 source:/users/info/etu-s4/royetju/Jimpe/GammaPanel.cpp
 	"GammaPanel.h"
 
-1540824016 /users/info/etu-s4/royetju/Jimpe/GammaPanel.h
+1540826237 /users/info/etu-s4/royetju/Jimpe/GammaPanel.h
 	<wx/wx.h>
 
-1540824016 source:/users/info/etu-s4/royetju/Jimpe/HuePanel.cpp
+1540826441 source:/users/info/etu-s4/royetju/Jimpe/HuePanel.cpp
 	"HuePanel.h"
 
-1540824016 /users/info/etu-s4/royetju/Jimpe/HuePanel.h
+1540826237 /users/info/etu-s4/royetju/Jimpe/HuePanel.h
 	<wx/wx.h>
 
-1540821551 /users/info/etu-s4/royetju/Jimpe/ThresholdPanel.h
+1540826237 /users/info/etu-s4/royetju/Jimpe/ThresholdPanel.h
 	<wx/wx.h>
 
-1540821551 /users/info/etu-s4/royetju/Jimpe/PosterizePanel.h
+1540826237 /users/info/etu-s4/royetju/Jimpe/PosterizePanel.h
 	<wx/wx.h>
 
-1540824016 /users/info/etu-s4/royetju/Jimpe/SaturationPanel.h
+1540826237 /users/info/etu-s4/royetju/Jimpe/SaturationPanel.h
 	<wx/wx.h>
 
-1540821551 source:/users/info/etu-s4/royetju/Jimpe/PosterizePanel.cpp
+1540826237 source:/users/info/etu-s4/royetju/Jimpe/PosterizePanel.cpp
 	"PosterizePanel.h"
 
-1540824016 source:/users/info/etu-s4/royetju/Jimpe/SaturationPanel.cpp
+1540826237 source:/users/info/etu-s4/royetju/Jimpe/SaturationPanel.cpp
 	"SaturationPanel.h"
 
-1540821551 source:/users/info/etu-s4/royetju/Jimpe/ThresholdPanel.cpp
+1540826237 source:/users/info/etu-s4/royetju/Jimpe/ThresholdPanel.cpp
 	"ThresholdPanel.h"
 

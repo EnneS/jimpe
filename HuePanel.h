@@ -13,6 +13,7 @@ class HuePanel : public wxPanel
         void sendCancelMessage(wxCommandEvent& event);
         wxSlider* m_hue;
         wxButton* m_cancelButton;
+        wxStaticText* m_title;
     protected:
 
     private:

@@ -17,6 +17,7 @@ class QuantizationPanel : public wxPanel
         wxTextCtrl* PaletteSize;
         wxIntegerValidator<int> validator;
         wxButton* m_cancelButton;
+        wxStaticText* m_title;
     protected:
 
     private:
