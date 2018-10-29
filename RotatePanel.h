@@ -13,6 +13,7 @@ class RotatePanel : public wxPanel
         void sendMessage(wxCommandEvent& event);
         wxButton* Button1;
         wxRadioBox* RadioBox1;
+        wxStaticText* m_title;
     protected:
 
     private:

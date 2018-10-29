@@ -13,6 +13,7 @@ class BlurPanel : public wxPanel
         void sendCancelMessage(wxCommandEvent& event);
         wxSlider* m_blur;
         wxButton* m_cancelButton;
+        wxStaticText* m_title;
     protected:
 
     private:
