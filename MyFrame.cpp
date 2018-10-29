@@ -7,6 +7,7 @@ wxDEFINE_EVENT(DO_POSTERIZE, wxCommandEvent);
 wxDEFINE_EVENT(DO_SATURATION, wxCommandEvent);
 wxDEFINE_EVENT(DO_GAMMA, wxCommandEvent);
 wxDEFINE_EVENT(DO_HUE, wxCommandEvent);
+wxDEFINE_EVENT(DO_CONTRASTE, wxCommandEvent);
 wxDEFINE_EVENT(START_TASK_GEN_PALETTE, wxCommandEvent);
 
 MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
@@ -93,6 +94,8 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Gamma);
 	menuProcess->Append(ID_Hue, wxT("Hue \tCtrl-U"), _("Modifie le hue de l\'image")) ;
 	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Hue);
+	menuProcess->Append(ID_Hue, wxT("Luminosite et contraste \tCtrl-U"), _("Modifie la luminosite et le contraste de l\'image")) ;
+	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_BrightnessContrast);
     menuProcess->Append(ID_Quantization, wxT("Quantization \tCtrl-Q"), _("Applique une quantization a l\'image")) ;
 	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Quantization);
 
@@ -289,6 +292,24 @@ void MyFrame::OnProcess(wxCommandEvent& event)
         }
 
         break;
+
+        case ID_BrightnessContrast:
+        if(m_process_panel){
+            delete m_process_panel;
+            m_process_panel = nullptr;
+        }
+        if(currentProcessPanel != ID_Hue){
+            currentProcessPanel = ID_Hue;
+            m_process_panel = new ContrastePanel(this);
+            m_panel->SetPosition(wxPoint(m_process_panel->GetSize().GetWidth(),0));
+            Bind(DO_CONTRASTE, &MyFrame::OnContraste, this);
+            SetClientSize(m_process_panel->GetSize().GetWidth() + m_panel->GetSize().GetWidth(), std::max(m_process_panel->GetSize().GetHeight(), m_panel->GetSize().GetHeight()));
+        } else {
+            currentProcessPanel = -1;
+            m_panel->SetPosition(wxPoint(0,0));
+        }
+
+        break;
     }
 
 }
@@ -327,3 +348,6 @@ void MyFrame::OnHue(wxCommandEvent& event){
     m_panel->Hue(event.GetInt());
 }
 
+void MyFrame::OnContraste(wxCommandEvent& event){
+    m_panel->BrightnessContrast(event.GetInt(), wxAtoi(event.GetString()));
+}

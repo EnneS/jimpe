@@ -217,6 +217,21 @@ void MyPanel::Hue(int value){
     }
 }
 
+void MyPanel::BrightnessContrast(int brightness, int contrast){
+    if(m_image){
+        if(brightness == -1){
+            effects[ID_BrightnessContrast].setActive(false);
+        } else {
+            if(!effects[ID_BrightnessContrast].isActive())
+                effects[ID_BrightnessContrast].setActive(true);
+                effects[ID_BrightnessContrast].setParam(brightness);
+                effects[ID_BrightnessContrast].setParam(contrast/100.0);
+        }
+    } else {
+        wxMessageDialog error(this, "Pas d'image ouverte");
+        error.ShowModal();
+    }
+}
 
 void MyPanel::debug(int i){
     debug_var = i;

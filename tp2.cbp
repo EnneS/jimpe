@@ -55,6 +55,8 @@
 		</Linker>
 		<Unit filename="BlurPanel.cpp" />
 		<Unit filename="BlurPanel.h" />
+		<Unit filename="ContrastePanel.cpp" />
+		<Unit filename="ContrastePanel.h" />
 		<Unit filename="DoubleBuffer.cpp" />
 		<Unit filename="DoubleBuffer.h" />
 		<Unit filename="GammaPanel.cpp" />

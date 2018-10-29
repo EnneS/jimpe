@@ -133,6 +133,7 @@ public:
     void Saturation(int factor);
     void Gamma(int factor);
     void Hue(int value);
+    void BrightnessContrast(int brightness, int contrast);
 
     void showStream(wxCommandEvent& evt);
     void generatePalette(int nb_colors);

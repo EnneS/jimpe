@@ -10,6 +10,7 @@
 #include "QuantizationPanel.h"
 #include "GammaPanel.h"
 #include "HuePanel.h"
+#include "ContrastePanel.h"
 
 class MyFrame: public wxFrame
 {
@@ -28,6 +29,7 @@ private:
     void OnThreshold(wxCommandEvent& event);
     void OnGamma(wxCommandEvent& event);
     void OnHue(wxCommandEvent& event);
+    void OnContraste(wxCommandEvent& event);
     void OnGeneratePalette(wxCommandEvent& event);
     wxPanel *m_process_panel;
     MyPanel *m_panel; // the panel inside the main frame

@@ -5465,7 +5465,7 @@
 	<array>
 	<unordered_map>
 
-1540826684 /users/info/etu-s4/souliern/jimpe/jimpe/MyPanel.h
+1540828887 /users/info/etu-s4/souliern/jimpe/jimpe/MyPanel.h
 	<wx/wx.h>
 	<opencv2/opencv.hpp>
 	"MyImage.h"
@@ -5503,10 +5503,10 @@
 1540826684 source:/users/info/etu-s4/souliern/jimpe/jimpe/KDTree.cpp
 	"KDTree.h"
 
-1540824627 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyFrame.cpp
+1540828863 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyFrame.cpp
 	"MyFrame.h"
 
-1540823494 /users/info/etu-s4/souliern/jimpe/jimpe/MyFrame.h
+1540828510 /users/info/etu-s4/souliern/jimpe/jimpe/MyFrame.h
 	<wx/wx.h>
 	"MyPanel.h"
 	"RotatePanel.h"
@@ -5517,6 +5517,7 @@
 	"QuantizationPanel.h"
 	"GammaPanel.h"
 	"HuePanel.h"
+	"ContrastePanel.h"
 
 1540827524 /users/info/etu-s4/souliern/jimpe/jimpe/RotatePanel.h
 	<wx/wx.h>
@@ -5530,7 +5531,7 @@
 	<cstdlib>
 	<cmath>
 
-1540826684 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyPanel.cpp
+1540828915 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyPanel.cpp
 	"MyPanel.h"
 	<thread>
 	<chrono>
@@ -5549,7 +5550,7 @@
 
 1540815885 source:/users/info/etu-s4/souliern/jimpe/jimpe/oldFunctions.cpp
 
-1540825394 source:/users/info/etu-s4/souliern/jimpe/jimpe/QuantizationPanel.cpp
+1540827637 source:/users/info/etu-s4/souliern/jimpe/jimpe/QuantizationPanel.cpp
 	"QuantizationPanel.h"
 
 1540827578 source:/users/info/etu-s4/souliern/jimpe/jimpe/RotatePanel.cpp
@@ -5568,7 +5569,7 @@
 1540826684 source:/users/info/etu-s4/souliern/jimpe/jimpe/VideoStream.cpp
 	"VideoStream.h"
 
-1540825447 source:/users/info/etu-s4/souliern/jimpe/jimpe/ThresholdPanel.cpp
+1540827647 source:/users/info/etu-s4/souliern/jimpe/jimpe/ThresholdPanel.cpp
 	"ThresholdPanel.h"
 
 1540825174 /users/info/etu-s4/souliern/jimpe/jimpe/ThresholdPanel.h
@@ -5577,28 +5578,28 @@
 1540824898 /users/info/etu-s4/souliern/jimpe/jimpe/BlurPanel.h
 	<wx/wx.h>
 
-1540825551 source:/users/info/etu-s4/souliern/jimpe/jimpe/BlurPanel.cpp
+1540827654 source:/users/info/etu-s4/souliern/jimpe/jimpe/BlurPanel.cpp
 	"BlurPanel.h"
 
 1540825158 /users/info/etu-s4/souliern/jimpe/jimpe/PosterizePanel.h
 	<wx/wx.h>
 
-1540825449 source:/users/info/etu-s4/souliern/jimpe/jimpe/PosterizePanel.cpp
+1540827671 source:/users/info/etu-s4/souliern/jimpe/jimpe/PosterizePanel.cpp
 	"PosterizePanel.h"
 
 1540825172 /users/info/etu-s4/souliern/jimpe/jimpe/SaturationPanel.h
 	<wx/wx.h>
 
-1540825445 source:/users/info/etu-s4/souliern/jimpe/jimpe/SaturationPanel.cpp
+1540827644 source:/users/info/etu-s4/souliern/jimpe/jimpe/SaturationPanel.cpp
 	"SaturationPanel.h"
 
 1540825190 /users/info/etu-s4/souliern/jimpe/jimpe/GammaPanel.h
 	<wx/wx.h>
 
-1540826747 source:/users/info/etu-s4/souliern/jimpe/jimpe/GammaPanel.cpp
+1540827658 source:/users/info/etu-s4/souliern/jimpe/jimpe/GammaPanel.cpp
 	"GammaPanel.h"
 
-1540826684 source:/users/info/etu-s4/souliern/jimpe/jimpe/HuePanel.cpp
+1540827664 source:/users/info/etu-s4/souliern/jimpe/jimpe/HuePanel.cpp
 	"HuePanel.h"
 
 1540825293 /users/info/etu-s4/souliern/jimpe/jimpe/HuePanel.h
@@ -5639,4 +5640,10 @@
 
 1540826237 source:/users/info/etu-s4/royetju/Jimpe/ThresholdPanel.cpp
 	"ThresholdPanel.h"
+
+1540828229 /users/info/etu-s4/souliern/jimpe/jimpe/ContrastePanel.h
+	<wx/wx.h>
+
+1540828967 source:/users/info/etu-s4/souliern/jimpe/jimpe/ContrastePanel.cpp
+	"ContrastePanel.h"
 
