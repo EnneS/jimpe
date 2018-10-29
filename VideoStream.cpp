@@ -23,8 +23,6 @@ void* VideoStream::Entry(){
             *((long*)((void*)(&currentTime))) = t.GetLo();
             *((long*)((void*)(&currentTime))+1) = t.GetHi();
 
-            std::cout << time  - currentTime << std::endl;
-
             wxMilliSleep(std::max(0LL, frameDelay + time - currentTime));
 
             cv::Mat* frame = buffer.GetBack();

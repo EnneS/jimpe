@@ -62,11 +62,11 @@ void MyImage::Saturation(int amount){
 void MyImage::Hue(int rotation){
     cv::Mat* img = image.GetFront();
     cv::cvtColor(*img, *img, CV_RGB2HSV);
-
+    int hue;
     unsigned char* data = img->data;
     size_t s = img->rows * img->cols * 3;
     for(size_t i = 0; i < s; i+=3){
-        data[i] = cv::saturate_cast<uchar>(data[i] + rotation);
+        data[i] = rotation + data[i];
     }
 
     cv::cvtColor(*img, *img, CV_HSV2RGB);
@@ -135,7 +135,6 @@ void MyImage::BorderDetect(){
 }
 
 void MyImage::Quantization(KDTree* palette, int nb_colors){
-    std::cout << "quant" << std::endl;
     cv::Vec<unsigned char, 3> color;
     cv::Mat* img = image.GetFront();
     unsigned char* data = img->data;

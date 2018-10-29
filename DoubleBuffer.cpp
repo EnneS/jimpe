@@ -34,7 +34,6 @@ cv::Mat* DoubleBuffer::GetFront(){
 
 void DoubleBuffer::FlagBack(){
     mutex_back.Lock();
-    std::cout << "back" << std::endl;
     state |= 1;
     Swap();
 
@@ -44,7 +43,6 @@ void DoubleBuffer::FlagBack(){
 
 void DoubleBuffer::FlagFront(){
     mutex_front.Lock();
-    std::cout << "front" << std::endl;
     state |= 2;
     Swap();
 
@@ -54,7 +52,6 @@ void DoubleBuffer::FlagFront(){
 void DoubleBuffer::Swap(){
 
     if(state == 3){
-        std::cout << "swap" << std::endl;
         current = 1 - current;
         state = 0;
         condition_back.Signal();

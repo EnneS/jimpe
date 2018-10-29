@@ -248,6 +248,5 @@ cv::Vec<unsigned char, 3> KDTree::getColor(unsigned char* color, unsigned int N_
 }
 
 void KDTree::addColor(){
-    std::cout << "color" << std::endl;
     root->maxVarSplit();
 }

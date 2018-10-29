@@ -186,6 +186,7 @@ void MyPanel::Saturation(int factor){
 }
 
 void MyPanel::Gamma(int factor){
+
     double factorDouble = factor/100.0;
     if(m_image){
         if(factor == -1){
@@ -229,7 +230,6 @@ void MyPanel::showStream(wxCommandEvent& evt){
         effects[i].apply(m_image);
     }
 
-    std::cout << "display" << std::endl;
     m_image->Reload();
 
     Refresh();

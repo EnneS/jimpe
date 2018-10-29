@@ -53,7 +53,7 @@ public:
     void setParam(int param){
         parameter = param;
     }
-    void setDoubleParam(bool db){
+    void setDoubleParam(double db){
         doubleParameter = db;
     }
     void setPointer(void* ptr){
