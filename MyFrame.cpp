@@ -4,6 +4,9 @@ wxDEFINE_EVENT(DO_ROTATE, wxCommandEvent);
 wxDEFINE_EVENT(DO_THRESHOLD, wxCommandEvent);
 wxDEFINE_EVENT(DO_BLUR, wxCommandEvent);
 wxDEFINE_EVENT(DO_POSTERIZE, wxCommandEvent);
+wxDEFINE_EVENT(DO_SATURATION, wxCommandEvent);
+wxDEFINE_EVENT(DO_GAMMA, wxCommandEvent);
+wxDEFINE_EVENT(DO_HUE, wxCommandEvent);
 wxDEFINE_EVENT(START_TASK_GEN_PALETTE, wxCommandEvent);
 
 MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
@@ -83,6 +86,12 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Posterize);
 	menuProcess->Append(ID_BorderDetect, wxT("Détéction de bords \tCtrl-D"), _("Applique une détéction de bords a l\'image")) ;
 	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_BorderDetect);
+	menuProcess->Append(ID_Saturation, wxT("Saturation \tCtrl-S"), _("Applique une saturation a l\'image")) ;
+	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Saturation);
+    menuProcess->Append(ID_Gamma, wxT("Gamma \tCtrl-G"), _("Modifie le gamma de l\'image")) ;
+	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Gamma);
+	menuProcess->Append(ID_Hue, wxT("Hue \tCtrl-U"), _("Modifie le hue de l\'image")) ;
+	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Hue);
     menuProcess->Append(ID_Quantization, wxT("Quantization \tCtrl-Q"), _("Applique une quantization a l\'image")) ;
 	Bind(wxEVT_MENU, &MyFrame::OnProcess, this, ID_Quantization);
 
@@ -94,7 +103,7 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 	SetMenuBar(menuBar) ;
 
 	CreateStatusBar();
-    SetStatusText(wxT("Mon visualiseur d'image"));
+    SetStatusText(wxT("Jimpe - Video Editor"));
     m_panel->debug(5);
     SetClientSize(m_panel->GetSize());
     m_panel->debug(6);
@@ -224,8 +233,61 @@ void MyFrame::OnProcess(wxCommandEvent& event)
                 currentProcessPanel = -1;
                 m_panel->SetPosition(wxPoint(0,0));
             }
+            break;
+
+        case ID_Saturation:
+            if(m_process_panel){
+                delete m_process_panel;
+                m_process_panel = nullptr;
+            }
+            if(currentProcessPanel != ID_Saturation){
+                currentProcessPanel = ID_Saturation;
+                m_process_panel = new SaturationPanel(this);
+                m_panel->SetPosition(wxPoint(m_process_panel->GetSize().GetWidth(),0));
+                Bind(DO_SATURATION, &MyFrame::OnSaturation, this);
+                SetClientSize(m_process_panel->GetSize().GetWidth() + m_panel->GetSize().GetWidth(), std::max(m_process_panel->GetSize().GetHeight(), m_panel->GetSize().GetHeight()));
+            } else {
+                currentProcessPanel = -1;
+                m_panel->SetPosition(wxPoint(0,0));
+            }
 
             break;
+
+        case ID_Gamma:
+        if(m_process_panel){
+            delete m_process_panel;
+            m_process_panel = nullptr;
+        }
+        if(currentProcessPanel != ID_Gamma){
+            currentProcessPanel = ID_Gamma;
+            m_process_panel = new GammaPanel(this);
+            m_panel->SetPosition(wxPoint(m_process_panel->GetSize().GetWidth(),0));
+            Bind(DO_GAMMA, &MyFrame::OnGamma, this);
+            SetClientSize(m_process_panel->GetSize().GetWidth() + m_panel->GetSize().GetWidth(), std::max(m_process_panel->GetSize().GetHeight(), m_panel->GetSize().GetHeight()));
+        } else {
+            currentProcessPanel = -1;
+            m_panel->SetPosition(wxPoint(0,0));
+        }
+
+        break;
+
+        case ID_Hue:
+        if(m_process_panel){
+            delete m_process_panel;
+            m_process_panel = nullptr;
+        }
+        if(currentProcessPanel != ID_Hue){
+            currentProcessPanel = ID_Hue;
+            m_process_panel = new HuePanel(this);
+            m_panel->SetPosition(wxPoint(m_process_panel->GetSize().GetWidth(),0));
+            Bind(DO_HUE, &MyFrame::OnHue, this);
+            SetClientSize(m_process_panel->GetSize().GetWidth() + m_panel->GetSize().GetWidth(), std::max(m_process_panel->GetSize().GetHeight(), m_panel->GetSize().GetHeight()));
+        } else {
+            currentProcessPanel = -1;
+            m_panel->SetPosition(wxPoint(0,0));
+        }
+
+        break;
     }
 
 }
@@ -250,5 +312,17 @@ void MyFrame::OnBlur(wxCommandEvent& event){
 
 void MyFrame::OnPosterize(wxCommandEvent& event){
     m_panel->Posterize(event.GetInt());
+}
+
+void MyFrame::OnSaturation(wxCommandEvent& event){
+    m_panel->Saturation(event.GetInt());
+}
+
+void MyFrame::OnGamma(wxCommandEvent& event){
+    m_panel->Gamma(event.GetInt());
+}
+
+void MyFrame::OnHue(wxCommandEvent& event){
+    m_panel->Hue(event.GetInt());
 }
 

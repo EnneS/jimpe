@@ -57,6 +57,8 @@
 		<Unit filename="BlurPanel.h" />
 		<Unit filename="DoubleBuffer.cpp" />
 		<Unit filename="DoubleBuffer.h" />
+		<Unit filename="GammaPanel.cpp" />
+		<Unit filename="GammaPanel.h" />
 		<Unit filename="GeneratePaletteThread.cpp" />
 		<Unit filename="GeneratePaletteThread.h" />
 		<Unit filename="KDTree.cpp" />
@@ -79,6 +81,8 @@
 		<Unit filename="QuantizationPanel.h" />
 		<Unit filename="RotatePanel.cpp" />
 		<Unit filename="RotatePanel.h" />
+		<Unit filename="SaturationPanel.cpp" />
+		<Unit filename="SaturationPanel.h" />
 		<Unit filename="ThresholdPanel.cpp" />
 		<Unit filename="ThresholdPanel.h" />
 		<Unit filename="VideoStream.cpp" />

@@ -5458,7 +5458,7 @@
 	<array>
 	<unordered_map>
 
-1540819956 /users/info/etu-s4/souliern/jimpe/jimpe/MyPanel.h
+1540823299 /users/info/etu-s4/souliern/jimpe/jimpe/MyPanel.h
 	<wx/wx.h>
 	<opencv2/opencv.hpp>
 	"MyImage.h"
@@ -5496,17 +5496,20 @@
 1540815884 source:/users/info/etu-s4/souliern/jimpe/jimpe/KDTree.cpp
 	"KDTree.h"
 
-1540820152 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyFrame.cpp
+1540823286 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyFrame.cpp
 	"MyFrame.h"
 
-1540820002 /users/info/etu-s4/souliern/jimpe/jimpe/MyFrame.h
+1540823494 /users/info/etu-s4/souliern/jimpe/jimpe/MyFrame.h
 	<wx/wx.h>
 	"MyPanel.h"
 	"RotatePanel.h"
 	"BlurPanel.h"
 	"ThresholdPanel.h"
 	"PosterizePanel.h"
+	"SaturationPanel.h"
 	"QuantizationPanel.h"
+	"GammaPanel.h"
+	"HuePanel.h"
 
 1540815884 /users/info/etu-s4/souliern/jimpe/jimpe/RotatePanel.h
 	<wx/wx.h>
@@ -5520,7 +5523,7 @@
 	<cstdlib>
 	<cmath>
 
-1540820620 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyPanel.cpp
+1540823792 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyPanel.cpp
 	"MyPanel.h"
 	<thread>
 	<chrono>
@@ -5575,4 +5578,22 @@
 
 1540820340 source:/users/info/etu-s4/souliern/jimpe/jimpe/PosterizePanel.cpp
 	"PosterizePanel.h"
+
+1540821443 /users/info/etu-s4/souliern/jimpe/jimpe/SaturationPanel.h
+	<wx/wx.h>
+
+1540822580 source:/users/info/etu-s4/souliern/jimpe/jimpe/SaturationPanel.cpp
+	"SaturationPanel.h"
+
+1540822865 /users/info/etu-s4/souliern/jimpe/jimpe/GammaPanel.h
+	<wx/wx.h>
+
+1540823397 source:/users/info/etu-s4/souliern/jimpe/jimpe/GammaPanel.cpp
+	"GammaPanel.h"
+
+1540823465 source:/users/info/etu-s4/souliern/jimpe/jimpe/HuePanel.cpp
+	"HuePanel.h"
+
+1540823417 /users/info/etu-s4/souliern/jimpe/jimpe/HuePanel.h
+	<wx/wx.h>
 

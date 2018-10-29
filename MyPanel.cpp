@@ -159,7 +159,6 @@ void MyPanel::Posterize(int value){
         wxMessageDialog error(this, "Pas d'image ouverte");
         error.ShowModal();
     }
-
 }
 
 void MyPanel::BorderDetect(){
@@ -169,9 +168,55 @@ void MyPanel::BorderDetect(){
         wxMessageDialog error(this, "Pas d'image ouverte");
         error.ShowModal();
     }
-
-
 }
+
+void MyPanel::Saturation(int factor){
+    if(m_image){
+        if(factor == -256){
+            effects[ID_Saturation].setActive(false);
+        } else {
+            if(!effects[ID_Saturation].isActive())
+                effects[ID_Saturation].setActive(true);
+            effects[ID_Saturation].setParam(factor);
+        }
+    } else {
+        wxMessageDialog error(this, "Pas d'image ouverte");
+        error.ShowModal();
+    }
+}
+
+void MyPanel::Gamma(int factor){
+    double factorDouble = factor/100.0;
+    if(m_image){
+        if(factor == -1){
+            effects[ID_Gamma].setActive(false);
+        } else {
+            if(!effects[ID_Gamma].isActive())
+                effects[ID_Gamma].setActive(true);
+            effects[ID_Gamma].setDoubleParam(factorDouble);
+        }
+    } else {
+        wxMessageDialog error(this, "Pas d'image ouverte");
+        error.ShowModal();
+    }
+}
+
+void MyPanel::Hue(int value){
+    if(m_image){
+        if(value == -1){
+            effects[ID_Hue].setActive(false);
+        } else {
+            if(!effects[ID_Hue].isActive())
+                effects[ID_Hue].setActive(true);
+            effects[ID_Hue].setParam(value);
+        }
+    } else {
+        wxMessageDialog error(this, "Pas d'image ouverte");
+        error.ShowModal();
+    }
+}
+
+
 void MyPanel::debug(int i){
     debug_var = i;
 

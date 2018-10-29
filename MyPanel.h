@@ -130,7 +130,9 @@ public:
     void BorderDetect();
     void Desaturate();
     void Saturate();
-    void Saturation(double factor);
+    void Saturation(int factor);
+    void Gamma(int factor);
+    void Hue(int value);
 
     void showStream(wxCommandEvent& evt);
     void generatePalette(int nb_colors);
