@@ -12,6 +12,7 @@ SaturationPanel::SaturationPanel(wxWindow* parent) : wxPanel(parent, wxID_ANY, w
 
 SaturationPanel::~SaturationPanel()
 {
+    delete m_title;
 }
 
 void SaturationPanel::sendMessage(wxCommandEvent& event){

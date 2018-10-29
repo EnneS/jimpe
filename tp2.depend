@@ -5443,14 +5443,14 @@
 	"wx/validate.h"
 	<limits>
 
-1540816000 source:/users/info/etu-s4/souliern/jimpe/jimpe/DoubleBuffer.cpp
+1540826684 source:/users/info/etu-s4/souliern/jimpe/jimpe/DoubleBuffer.cpp
 	"DoubleBuffer.h"
 
 1540815884 /users/info/etu-s4/souliern/jimpe/jimpe/DoubleBuffer.h
 	<wx/wx.h>
 	<opencv2/opencv.hpp>
 
-1540815884 source:/users/info/etu-s4/souliern/jimpe/jimpe/GeneratePaletteThread.cpp
+1540826684 source:/users/info/etu-s4/souliern/jimpe/jimpe/GeneratePaletteThread.cpp
 	"GeneratePaletteThread.h"
 
 1540815884 /users/info/etu-s4/souliern/jimpe/jimpe/GeneratePaletteThread.h
@@ -5465,7 +5465,7 @@
 	<array>
 	<unordered_map>
 
-1540823299 /users/info/etu-s4/souliern/jimpe/jimpe/MyPanel.h
+1540826684 /users/info/etu-s4/souliern/jimpe/jimpe/MyPanel.h
 	<wx/wx.h>
 	<opencv2/opencv.hpp>
 	"MyImage.h"
@@ -5500,7 +5500,7 @@
 	<opencv2/opencv.hpp>
 	"MyPanel.h"
 
-1540815884 source:/users/info/etu-s4/souliern/jimpe/jimpe/KDTree.cpp
+1540826684 source:/users/info/etu-s4/souliern/jimpe/jimpe/KDTree.cpp
 	"KDTree.h"
 
 1540824627 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyFrame.cpp
@@ -5518,19 +5518,19 @@
 	"GammaPanel.h"
 	"HuePanel.h"
 
-1540825170 /users/info/etu-s4/souliern/jimpe/jimpe/RotatePanel.h
+1540827524 /users/info/etu-s4/souliern/jimpe/jimpe/RotatePanel.h
 	<wx/wx.h>
 
 1540825167 /users/info/etu-s4/souliern/jimpe/jimpe/QuantizationPanel.h
 	<wx/wx.h>
 	<wx/valnum.h>
 
-1540820241 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyImage.cpp
+1540826684 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyImage.cpp
 	"MyImage.h"
 	<cstdlib>
 	<cmath>
 
-1540823792 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyPanel.cpp
+1540826684 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyPanel.cpp
 	"MyPanel.h"
 	<thread>
 	<chrono>
@@ -5552,7 +5552,7 @@
 1540825394 source:/users/info/etu-s4/souliern/jimpe/jimpe/QuantizationPanel.cpp
 	"QuantizationPanel.h"
 
-1540825308 source:/users/info/etu-s4/souliern/jimpe/jimpe/RotatePanel.cpp
+1540827578 source:/users/info/etu-s4/souliern/jimpe/jimpe/RotatePanel.cpp
 	"RotatePanel.h"
 
 1540815885 source:/users/info/etu-s4/souliern/jimpe/jimpe/tp2App.cpp
@@ -5565,7 +5565,7 @@
 	"MyImage.h"
 	"MyFrame.h"
 
-1540816000 source:/users/info/etu-s4/souliern/jimpe/jimpe/VideoStream.cpp
+1540826684 source:/users/info/etu-s4/souliern/jimpe/jimpe/VideoStream.cpp
 	"VideoStream.h"
 
 1540825447 source:/users/info/etu-s4/souliern/jimpe/jimpe/ThresholdPanel.cpp
@@ -5595,10 +5595,10 @@
 1540825190 /users/info/etu-s4/souliern/jimpe/jimpe/GammaPanel.h
 	<wx/wx.h>
 
-1540825458 source:/users/info/etu-s4/souliern/jimpe/jimpe/GammaPanel.cpp
+1540826747 source:/users/info/etu-s4/souliern/jimpe/jimpe/GammaPanel.cpp
 	"GammaPanel.h"
 
-1540825537 source:/users/info/etu-s4/souliern/jimpe/jimpe/HuePanel.cpp
+1540826684 source:/users/info/etu-s4/souliern/jimpe/jimpe/HuePanel.cpp
 	"HuePanel.h"
 
 1540825293 /users/info/etu-s4/souliern/jimpe/jimpe/HuePanel.h

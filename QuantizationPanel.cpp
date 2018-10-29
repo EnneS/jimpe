@@ -16,6 +16,7 @@ QuantizationPanel::~QuantizationPanel()
 {
     delete PaletteSize;
     delete GeneratePalette;
+    delete m_title;
 }
 
 void QuantizationPanel::sendMessage(wxCommandEvent& event){

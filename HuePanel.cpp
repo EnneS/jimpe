@@ -12,6 +12,7 @@ HuePanel::HuePanel(wxWindow* parent) : wxPanel(parent, wxID_ANY, wxPoint(0, 0), 
 
 HuePanel::~HuePanel()
 {
+    delete m_title;
 }
 
 void HuePanel::sendMessage(wxCommandEvent& event){

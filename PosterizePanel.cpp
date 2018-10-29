@@ -12,6 +12,7 @@ PosterizePanel::PosterizePanel(wxWindow* parent) : wxPanel(parent, wxID_ANY, wxP
 
 PosterizePanel::~PosterizePanel()
 {
+    delete m_title;
 }
 
 void PosterizePanel::sendMessage(wxCommandEvent& event){

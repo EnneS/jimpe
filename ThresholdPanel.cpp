@@ -12,6 +12,7 @@ ThresholdPanel::ThresholdPanel(wxWindow* parent) : wxPanel(parent, wxID_ANY, wxP
 
 ThresholdPanel::~ThresholdPanel()
 {
+    delete m_title;
 }
 
 void ThresholdPanel::sendMessage(wxCommandEvent& event){

@@ -12,6 +12,7 @@ BlurPanel::BlurPanel(wxWindow* parent) : wxPanel(parent, wxID_ANY, wxPoint(0, 0)
 
 BlurPanel::~BlurPanel()
 {
+    delete m_title;
 }
 
 void BlurPanel::sendMessage(wxCommandEvent& event){

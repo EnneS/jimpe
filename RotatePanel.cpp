@@ -8,7 +8,7 @@ RotatePanel::RotatePanel(wxWindow* parent) : wxPanel(parent, wxID_ANY, wxPoint(0
     wxT("180   "),
     wxT("-90   ")
   };
-m_title = new wxStaticText(this, wxID_ANY, "Rotation",  wxPoint(10,10), wxSize(200,60), wxALIGN_CENTER | wxST_NO_AUTORESIZE);
+  m_title = new wxStaticText(this, wxID_ANY, "Quantization",  wxPoint(10,10), wxSize(200,60), wxALIGN_CENTER | wxST_NO_AUTORESIZE);
   RadioBox1 = new wxRadioBox(this, wxID_ANY, _("Angle de rotation"), wxPoint(16,30), wxSize(175,90), 3, __wxRadioBoxChoices_1, 3, 0, wxDefaultValidator, _T("ID_RADIOBOX1"));
   Button1 = new wxButton(this, wxID_OK, _("OK"), wxPoint(16,130), wxDefaultSize);
   Button1->Bind(wxEVT_BUTTON, &RotatePanel::sendMessage, this);
@@ -16,7 +16,7 @@ m_title = new wxStaticText(this, wxID_ANY, "Rotation",  wxPoint(10,10), wxSize(2
 
 RotatePanel::~RotatePanel()
 {
-    //dtor
+    delete m_title;
 }
 
 void RotatePanel::sendMessage(wxCommandEvent& event){
