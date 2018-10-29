@@ -61,6 +61,8 @@
 		<Unit filename="GammaPanel.h" />
 		<Unit filename="GeneratePaletteThread.cpp" />
 		<Unit filename="GeneratePaletteThread.h" />
+		<Unit filename="HuePanel.cpp" />
+		<Unit filename="HuePanel.h" />
 		<Unit filename="KDTree.cpp" />
 		<Unit filename="KDTree.h" />
 		<Unit filename="MyFrame.cpp" />
