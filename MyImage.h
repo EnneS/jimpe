@@ -15,6 +15,11 @@ class MyImage : public wxImage
         void Blur(int amount);
         void Negative();
         void Desaturate();
+        void Saturate();
+        void Saturation(int amount);
+        void Hue(int rotation);
+        void BrightnessContrast(int brightness, double contrast);
+        void Gamma(double gamma);
         void Threshold(int seuil);
         void Mirror(bool horizontally);
         void Rotate90(bool clockwise);

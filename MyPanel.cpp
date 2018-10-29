@@ -17,6 +17,7 @@ void MyPanel::onPaint(wxPaintEvent &WXUNUSED(event)){
 
 MyPanel::MyPanel(wxWindow *parent) : wxPanel(parent), rotation(0){
     thread = new VideoStream(this, buffer);
+
     Bind(wxEVT_PAINT, &MyPanel::onPaint, this);
     Bind(NEW_FRAME_EVENT, &MyPanel::showStream, this);
     Bind(END_TASK_GEN_PALETTE, &MyPanel::paletteGenerated, this);

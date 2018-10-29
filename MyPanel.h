@@ -21,8 +21,9 @@ enum	// énumération. Elle gère la numérotation automatiquement
 	ID_Posterize,
     ID_Negative,
     ID_Hue,
-    ID_Contrast,
     ID_Saturation,
+    ID_BrightnessContrast,
+    ID_Gamma,
     ID_Blur,
     ID_Threshold,
 
@@ -96,11 +97,17 @@ public:
             case ID_Quantization:
                 image->Quantization((KDTree*)pointer, parameter);
                 break;
-            case ID_Blur:
-                image->Blur(parameter);
-                break;
             case ID_Saturation:
-                image->Saturation(doubleParameter);
+                image->Saturation(parameter);
+                break;
+            case ID_Hue:
+                image->Hue(parameter);
+                break;
+            case ID_BrightnessContrast:
+                image->BrightnessContrast(parameter, doubleParameter);
+                break;
+            case ID_Gamma:
+                image->Gamma(doubleParameter);
                 break;
         }
     }

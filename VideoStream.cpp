@@ -4,6 +4,10 @@
 VideoStream::VideoStream(MyPanel* p, DoubleBuffer& b) : stream("vid.mp4"), panel(p), buffer(b)
 {
     frameDelay = 1000 / stream.get(CV_CAP_PROP_FPS);
+
+    wxLongLong t = wxGetLocalTimeMillis();
+    *((long*)((void*)(&time))) = t.GetLo();
+    *((long*)((void*)(&time))+1) = t.GetHi();
 }
 
 VideoStream::~VideoStream()
@@ -19,6 +23,7 @@ void* VideoStream::Entry(){
             *((long*)((void*)(&currentTime))) = t.GetLo();
             *((long*)((void*)(&currentTime))+1) = t.GetHi();
 
+            std::cout << time  - currentTime << std::endl;
 
             wxMilliSleep(std::max(0LL, frameDelay + time - currentTime));
 

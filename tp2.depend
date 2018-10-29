@@ -1751,7 +1751,7 @@
 	"RotatePanel.h"
 	"QuantizationPanel.h"
 
-1540746114 /users/info/etu-s4/royetju/Jimpe/MyPanel.h
+1540815621 /users/info/etu-s4/royetju/Jimpe/MyPanel.h
 	<wx/wx.h>
 	<opencv2/opencv.hpp>
 	"MyImage.h"
@@ -1762,7 +1762,7 @@
 	"GeneratePaletteThread.h"
 	<iostream>
 
-1540744068 /users/info/etu-s4/royetju/Jimpe/MyImage.h
+1540814707 /users/info/etu-s4/royetju/Jimpe/MyImage.h
 	<wx/wx.h>
 	<iostream>
 	<opencv2/opencv.hpp>
@@ -1783,11 +1783,11 @@
 1539690474 /users/info/etu-s4/royetju/Jimpe/WebcamStream.h
 	"opencv2/opencv.hpp"
 
-1540739892 source:/users/info/etu-s4/royetju/Jimpe/MyImage.cpp
+1540770451 source:/users/info/etu-s4/royetju/Jimpe/MyImage.cpp
 	"MyImage.h"
 	<cstdlib>
 
-1540745609 source:/users/info/etu-s4/royetju/Jimpe/MyPanel.cpp
+1540811524 source:/users/info/etu-s4/royetju/Jimpe/MyPanel.cpp
 	"MyPanel.h"
 	<thread>
 	<chrono>
@@ -5387,7 +5387,7 @@
 	<wx/wx.h>
 	<opencv2/opencv.hpp>
 
-1540735688 source:/users/info/etu-s4/royetju/Jimpe/DoubleBuffer.cpp
+1540811649 source:/users/info/etu-s4/royetju/Jimpe/DoubleBuffer.cpp
 	"DoubleBuffer.h"
 
 1539815401 /users/info/etu-s4/royetju/Jimpe/DoubleBuffer.h
@@ -5400,9 +5400,9 @@
 	<opencv2/opencv.hpp>
 	"MyPanel.h"
 
-1539816037 source:/users/info/etu-s4/royetju/Jimpe/oldFunctions.cpp
+1540750057 source:/users/info/etu-s4/royetju/Jimpe/oldFunctions.cpp
 
-1540681291 source:/users/info/etu-s4/royetju/Jimpe/VideoStream.cpp
+1540811999 source:/users/info/etu-s4/royetju/Jimpe/VideoStream.cpp
 	"VideoStream.h"
 
 1540740790 source:/users/info/etu-s4/royetju/Jimpe/GeneratePaletteThread.cpp

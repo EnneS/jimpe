@@ -1,6 +1,6 @@
 #include "MyImage.h"
 #include <cstdlib>
-
+#include <cmath>
 MyImage::MyImage(int largeur, int hauteur, DoubleBuffer& img): wxImage(largeur, hauteur), image(img){}
 
 MyImage::MyImage(DoubleBuffer& img) : wxImage(), image(img){}
@@ -13,10 +13,10 @@ MyImage::~MyImage()
 
 void MyImage::Blur(int amount){
     int kernel_size = amount*2 - 1;
-    cv::Mat* img = image->GetFront();
+    cv::Mat* img = image.GetFront();
     cv::Mat tmp;
 
-    cv::GaussianBlur(*img, tmp, cv::Size(kernel_size, kernel_size), 0.0, 0.0, BORDER_DEFAULT);
+    cv::GaussianBlur(*img, tmp, cv::Size(kernel_size, kernel_size), 0.0, 0.0, cv::BORDER_DEFAULT);
     *img = tmp;
 }
 void MyImage::Negative(){
@@ -31,9 +31,10 @@ void MyImage::Desaturate(){
 void MyImage::Saturate(){
     Posterize(1);
 }
+/*
 void MyImage::Saturation(double factor){
     cv::Mat original = image.GetFront()->clone();
-    cv::Mat* img = image->GetFront();
+    cv::Mat* img = image.GetFront();
     if(factor < 0.0){
         Desaturate();
         factor = -factor;
@@ -42,15 +43,58 @@ void MyImage::Saturation(double factor){
         Saturate();
     }
 
-    if(factor > 1.0)
-        factor = 1.0;
-
     cv::addWeighted(*img, factor, original, 1.0 - factor, 0.0, *img);
+}*/
+
+void MyImage::Saturation(int amount){
+    cv::Mat* img = image.GetFront();
+    cv::cvtColor(*img, *img, CV_RGB2HSV);
+
+    unsigned char* data = img->data;
+    size_t s = img->rows * img->cols * 3;
+    for(size_t i = 1; i < s; i+=3){
+        data[i] = cv::saturate_cast<uchar>(data[i] + amount);
+    }
+
+    cv::cvtColor(*img, *img, CV_HSV2RGB);
+}
+
+void MyImage::Hue(int rotation){
+    cv::Mat* img = image.GetFront();
+    cv::cvtColor(*img, *img, CV_RGB2HSV);
+
+    unsigned char* data = img->data;
+    size_t s = img->rows * img->cols * 3;
+    for(size_t i = 0; i < s; i+=3){
+        data[i] = cv::saturate_cast<uchar>(data[i] + rotation);
+    }
+
+    cv::cvtColor(*img, *img, CV_HSV2RGB);
+}
+
+void MyImage::BrightnessContrast(int brightness, double contrast){
+    cv::Mat* img = image.GetFront();
+    unsigned char* data = img->data;
+    size_t s = img->rows * img->cols * 3;
+    for(size_t i = 0; i < s; i++){
+        data[i] = cv::saturate_cast<uchar>(contrast * data[i] + brightness);
+    }
+}
+void MyImage::Gamma(double gamma){
+    cv::Mat* img = image.GetFront();
+    cv::Mat lut(1, 256, CV_8U);
+    unsigned char* data = lut.data;
+    for(int i = 0; i < 256; i++){
+        data[i] = cv::saturate_cast<uchar>(pow(i/255.0, gamma) * 255.0);
+    }
+    cv::LUT(*img, lut, *img);
 }
 
 void MyImage::Threshold(int seuil){
     cv::Mat* img = image.GetFront();
+    cv::cvtColor(*img, *img, CV_RGB2GRAY);
     cv::threshold(*img, *img, (double)seuil, (double)255, CV_THRESH_BINARY);
+    cv::cvtColor(*img, *img, CV_GRAY2RGB);
 }
 void MyImage::Mirror(bool horizontally){
     cv::Mat* img = image.GetFront();
@@ -72,19 +116,14 @@ void MyImage::Rotate180(){
 }
 void MyImage::Posterize(int nb){
     cv::Mat* img = image.GetFront();
-    unsigned char* data = img->ptr();
-    unsigned char lookup_table[256];
+    cv::Mat lut(1, 256, CV_8U);
     unsigned char m = 255;
-    int length = (img->rows * img->cols * 3);
     unsigned char nbCouleurs = 1 << nb;
-
+    unsigned char* data = lut.data;
     for(int i = 0; i < 256; i++){
-        lookup_table[i] = (i / (256/nbCouleurs)) * (m / (nbCouleurs - 1));
+        data[i] = (i / (256/nbCouleurs)) * (m / (nbCouleurs - 1));
     }
-
-    for(unsigned long i = 0; i < length; i++){
-        data[i] = lookup_table[data[i]];
-    }
+    cv::LUT(*img, lut, *img);
 }
 void MyImage::BorderDetect(){
     float data[9] = {1, 1, 1, 1, -8, 1, 1, 1, 1};
