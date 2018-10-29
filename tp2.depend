@@ -5436,3 +5436,143 @@
 	"wx/validate.h"
 	<limits>
 
+1540816000 source:/users/info/etu-s4/souliern/jimpe/jimpe/DoubleBuffer.cpp
+	"DoubleBuffer.h"
+
+1540815884 /users/info/etu-s4/souliern/jimpe/jimpe/DoubleBuffer.h
+	<wx/wx.h>
+	<opencv2/opencv.hpp>
+
+1540815884 source:/users/info/etu-s4/souliern/jimpe/jimpe/GeneratePaletteThread.cpp
+	"GeneratePaletteThread.h"
+
+1540815884 /users/info/etu-s4/souliern/jimpe/jimpe/GeneratePaletteThread.h
+	"KDTree.h"
+	<wx/wx.h>
+	"DoubleBuffer.h"
+	"MyPanel.h"
+
+1540815884 /users/info/etu-s4/souliern/jimpe/jimpe/KDTree.h
+	<opencv2/opencv.hpp>
+	<vector>
+	<array>
+	<unordered_map>
+
+1540819956 /users/info/etu-s4/souliern/jimpe/jimpe/MyPanel.h
+	<wx/wx.h>
+	<opencv2/opencv.hpp>
+	"MyImage.h"
+	"MyThresholdDialog.h"
+	"MyRotateDialog.h"
+	"MyPosterizeDialog.h"
+	"VideoStream.h"
+	"GeneratePaletteThread.h"
+	<iostream>
+
+1540816000 /users/info/etu-s4/souliern/jimpe/jimpe/MyImage.h
+	<wx/wx.h>
+	<iostream>
+	<opencv2/opencv.hpp>
+	"DoubleBuffer.h"
+	"KDTree.h"
+
+1540815884 /users/info/etu-s4/souliern/jimpe/jimpe/MyThresholdDialog.h
+	<wx/wx.h>
+
+1540815884 /users/info/etu-s4/souliern/jimpe/jimpe/MyRotateDialog.h
+	<wx/radiobox.h>
+	<wx/button.h>
+	<wx/dialog.h>
+
+1540815884 /users/info/etu-s4/souliern/jimpe/jimpe/MyPosterizeDialog.h
+	<wx/wx.h>
+
+1540815884 /users/info/etu-s4/souliern/jimpe/jimpe/VideoStream.h
+	"DoubleBuffer.h"
+	<wx/wx.h>
+	<opencv2/opencv.hpp>
+	"MyPanel.h"
+
+1540815884 source:/users/info/etu-s4/souliern/jimpe/jimpe/KDTree.cpp
+	"KDTree.h"
+
+1540820152 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyFrame.cpp
+	"MyFrame.h"
+
+1540820002 /users/info/etu-s4/souliern/jimpe/jimpe/MyFrame.h
+	<wx/wx.h>
+	"MyPanel.h"
+	"RotatePanel.h"
+	"BlurPanel.h"
+	"ThresholdPanel.h"
+	"PosterizePanel.h"
+	"QuantizationPanel.h"
+
+1540815884 /users/info/etu-s4/souliern/jimpe/jimpe/RotatePanel.h
+	<wx/wx.h>
+
+1540820513 /users/info/etu-s4/souliern/jimpe/jimpe/QuantizationPanel.h
+	<wx/wx.h>
+	<wx/valnum.h>
+
+1540820241 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyImage.cpp
+	"MyImage.h"
+	<cstdlib>
+	<cmath>
+
+1540820620 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyPanel.cpp
+	"MyPanel.h"
+	<thread>
+	<chrono>
+	<cstring>
+
+1540815884 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyPosterizeDialog.cpp
+	"MyPosterizeDialog.h"
+
+1540815884 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyRotateDialog.cpp
+	"MyRotateDialog.h"
+	<wx/intl.h>
+	<wx/string.h>
+
+1540815884 source:/users/info/etu-s4/souliern/jimpe/jimpe/MyThresholdDialog.cpp
+	"MyThresholdDialog.h"
+
+1540815885 source:/users/info/etu-s4/souliern/jimpe/jimpe/oldFunctions.cpp
+
+1540820643 source:/users/info/etu-s4/souliern/jimpe/jimpe/QuantizationPanel.cpp
+	"QuantizationPanel.h"
+
+1540815884 source:/users/info/etu-s4/souliern/jimpe/jimpe/RotatePanel.cpp
+	"RotatePanel.h"
+
+1540815885 source:/users/info/etu-s4/souliern/jimpe/jimpe/tp2App.cpp
+
+1540815885 source:/users/info/etu-s4/souliern/jimpe/jimpe/tp2Main.cpp
+	<wx/wxprec.h>
+	<opencv2/core/core.hpp>
+	<wx/wx.h>
+	<algorithm>
+	"MyImage.h"
+	"MyFrame.h"
+
+1540816000 source:/users/info/etu-s4/souliern/jimpe/jimpe/VideoStream.cpp
+	"VideoStream.h"
+
+1540818212 source:/users/info/etu-s4/souliern/jimpe/jimpe/ThresholdPanel.cpp
+	"ThresholdPanel.h"
+
+1540818136 /users/info/etu-s4/souliern/jimpe/jimpe/ThresholdPanel.h
+	<wx/wx.h>
+
+1540819670 /users/info/etu-s4/souliern/jimpe/jimpe/BlurPanel.h
+	<wx/wx.h>
+
+1540819674 source:/users/info/etu-s4/souliern/jimpe/jimpe/BlurPanel.cpp
+	"BlurPanel.h"
+
+1540819855 /users/info/etu-s4/souliern/jimpe/jimpe/PosterizePanel.h
+	<wx/wx.h>
+
+1540820340 source:/users/info/etu-s4/souliern/jimpe/jimpe/PosterizePanel.cpp
+	"PosterizePanel.h"
+

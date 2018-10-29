@@ -123,10 +123,10 @@ public:
     void saveImage(wxString fileName);
     void Miroir(bool horizontal);
     void Rotate(int r);
-    void Blur();
+    void Blur(int value);
     void Negative();
-    void Threshold();
-    void Posterize();
+    void Threshold(int value);
+    void Posterize(int value);
     void BorderDetect();
     void Desaturate();
     void Saturate();

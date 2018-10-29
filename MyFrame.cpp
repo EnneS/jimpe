@@ -1,6 +1,9 @@
 #include "MyFrame.h"
 
 wxDEFINE_EVENT(DO_ROTATE, wxCommandEvent);
+wxDEFINE_EVENT(DO_THRESHOLD, wxCommandEvent);
+wxDEFINE_EVENT(DO_BLUR, wxCommandEvent);
+wxDEFINE_EVENT(DO_POSTERIZE, wxCommandEvent);
 wxDEFINE_EVENT(START_TASK_GEN_PALETTE, wxCommandEvent);
 
 MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
@@ -18,17 +21,36 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
 
     // Images des tools
     wxBitmap negativeIcon(wxT("negative.png"), wxBITMAP_TYPE_PNG);
-    wxBitmap mirrorHIcon(wxT("mirroirh.png"), wxBITMAP_TYPE_PNG);
-    wxBitmap mirrorVIcon(wxT("mirrorv.png"), wxBITMAP_TYPE_PNG);
+    wxBitmap invertHIcon(wxT("invert.png"), wxBITMAP_TYPE_PNG);
+    wxBitmap invertVIcon(wxT("invertV.png"), wxBITMAP_TYPE_PNG);
     wxBitmap rotateIcon(wxT("rotate.png"), wxBITMAP_TYPE_PNG);
+
+    wxBitmap contourIcon(wxT("contour.png"), wxBITMAP_TYPE_PNG);
+    wxBitmap blurIcon(wxT("blur.png"), wxBITMAP_TYPE_PNG);
+    wxBitmap contrasteIcon(wxT("contraste.png"), wxBITMAP_TYPE_PNG);
+    wxBitmap gammaIcon(wxT("gamma.png"), wxBITMAP_TYPE_PNG);
+    wxBitmap hueIcon(wxT("hue.png"), wxBITMAP_TYPE_PNG);
+    wxBitmap posterisationIcon(wxT("posterisation.png"), wxBITMAP_TYPE_PNG);
+    wxBitmap quantizationIcon(wxT("quantization.png"), wxBITMAP_TYPE_PNG);
+    wxBitmap saturationIcon(wxT("saturation.png"), wxBITMAP_TYPE_PNG);
 
     // Ajout des tools à la toolbar
     m_toolbar->AddTool(ID_Negative, wxT("Negatif"), negativeIcon);
-    m_toolbar->AddTool(ID_MiroirH, wxT("Miroir Vertical"), mirrorHIcon);
-    m_toolbar->AddTool(ID_MiroirV, wxT("Miroir Horizontal"), mirrorVIcon);
+    m_toolbar->AddTool(ID_MiroirH, wxT("Miroir Vertical"), invertHIcon);
+    m_toolbar->AddTool(ID_MiroirV, wxT("Miroir Horizontal"), invertVIcon);
     m_toolbar->AddTool(ID_Rotate, wxT("Rotation"), rotateIcon);
 
+    m_toolbar->AddTool(ID_BorderDetect, wxT("Détection des contours"), contourIcon);
+    m_toolbar->AddTool(ID_Blur, wxT("Flou"), blurIcon);
+    m_toolbar->AddTool(ID_BrightnessContrast, wxT("Contraste"), contrasteIcon);
+    m_toolbar->AddTool(ID_Gamma, wxT("Gamma"), gammaIcon);
+    m_toolbar->AddTool(ID_Hue, wxT("Hue"), hueIcon);
+    m_toolbar->AddTool(ID_Saturation, wxT("Saturation"), saturationIcon);
+    m_toolbar->AddTool(ID_Posterize, wxT("Posterize"), posterisationIcon);
+    m_toolbar->AddTool(ID_Quantization, wxT("Quantization"), quantizationIcon);
+
     // Activation de la toolbar
+    m_toolbar->SetToolBitmapSize(wxSize(32,32));
     m_toolbar->Realize();
     SetToolBar(m_toolbar);
 
@@ -111,9 +133,26 @@ void MyFrame::OnProcess(wxCommandEvent& event)
             m_panel->Miroir(true);
             break;
         case ID_MiroirV : m_panel->Miroir(false); break;
-        case ID_Blur : m_panel->Blur(); break;
-        case ID_Rotate:
 
+        case ID_Blur :
+            if(m_process_panel){
+                delete m_process_panel;
+                m_process_panel = nullptr;
+            }
+
+            if(currentProcessPanel != ID_Blur){
+                currentProcessPanel = ID_Blur;
+                m_process_panel = new BlurPanel(this);
+                m_panel->SetPosition(wxPoint(m_process_panel->GetSize().GetWidth(),0));
+                Bind(DO_BLUR, &MyFrame::OnBlur, this);
+                SetClientSize(m_process_panel->GetSize().GetWidth() + m_panel->GetSize().GetWidth(), std::max(m_process_panel->GetSize().GetHeight(), m_panel->GetSize().GetHeight()));
+            } else {
+                currentProcessPanel = -1;
+                m_panel->SetPosition(wxPoint(0,0));
+            }
+            break;
+
+        case ID_Rotate:
             if(m_process_panel){
                 delete m_process_panel;
                 m_process_panel = nullptr;
@@ -130,10 +169,46 @@ void MyFrame::OnProcess(wxCommandEvent& event)
                 m_panel->SetPosition(wxPoint(0,0));
             }
             break;
+
         case ID_Negative : m_panel->Negative(); break;
-        case ID_Threshold : m_panel->Threshold(); break;
-        case ID_Posterize : m_panel->Posterize(); break;
+
+        case ID_Threshold :
+            if(m_process_panel){
+                delete m_process_panel;
+                m_process_panel = nullptr;
+            }
+            if(currentProcessPanel != ID_Threshold){
+                currentProcessPanel = ID_Threshold;
+                m_process_panel = new ThresholdPanel(this);
+                m_panel->SetPosition(wxPoint(m_process_panel->GetSize().GetWidth(),0));
+                Bind(DO_THRESHOLD, &MyFrame::OnThreshold, this);
+                SetClientSize(m_process_panel->GetSize().GetWidth() + m_panel->GetSize().GetWidth(), std::max(m_process_panel->GetSize().GetHeight(), m_panel->GetSize().GetHeight()));
+            } else {
+                currentProcessPanel = -1;
+                m_panel->SetPosition(wxPoint(0,0));
+            }
+            break;
+
+        case ID_Posterize :
+            if(m_process_panel){
+                delete m_process_panel;
+                m_process_panel = nullptr;
+            }
+            if(currentProcessPanel != ID_Posterize){
+                currentProcessPanel = ID_Posterize;
+                m_process_panel = new PosterizePanel(this);
+                m_panel->SetPosition(wxPoint(m_process_panel->GetSize().GetWidth(),0));
+                Bind(DO_POSTERIZE, &MyFrame::OnPosterize, this);
+                SetClientSize(m_process_panel->GetSize().GetWidth() + m_panel->GetSize().GetWidth(), std::max(m_process_panel->GetSize().GetHeight(), m_panel->GetSize().GetHeight()));
+            } else {
+                currentProcessPanel = -1;
+                m_panel->SetPosition(wxPoint(0,0));
+            }
+
+            break;
+
         case ID_BorderDetect : m_panel->BorderDetect(); break;
+
         case ID_Quantization:
             if(m_process_panel){
                 delete m_process_panel;
@@ -163,5 +238,17 @@ void MyFrame::OnRotate(wxCommandEvent& event){
 
 void MyFrame::OnGeneratePalette(wxCommandEvent& event){
     m_panel->generatePalette(event.GetInt());
-
 }
+
+void MyFrame::OnThreshold(wxCommandEvent& event){
+    m_panel->Threshold(event.GetInt());
+}
+
+void MyFrame::OnBlur(wxCommandEvent& event){
+    m_panel->Blur(event.GetInt());
+}
+
+void MyFrame::OnPosterize(wxCommandEvent& event){
+    m_panel->Posterize(event.GetInt());
+}
+

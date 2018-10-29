@@ -12,9 +12,11 @@ class QuantizationPanel : public wxPanel
         QuantizationPanel(wxWindow* parent);
         virtual ~QuantizationPanel();
         void sendMessage(wxCommandEvent& event);
+        void sendCancelMessage(wxCommandEvent& event);
         wxButton* GeneratePalette;
         wxTextCtrl* PaletteSize;
         wxIntegerValidator<int> validator;
+        wxButton* m_cancelButton;
     protected:
 
     private:

@@ -86,11 +86,15 @@ void MyPanel::Miroir(bool horizontal){
     }
 }
 
-void MyPanel::Blur(){
+void MyPanel::Blur(int value){
     if(m_image){
-        effects[ID_Blur].setParam(3);
-        effects[ID_Blur].toggle();
-
+        if(value == -1){
+            effects[ID_Blur].setActive(false);
+        } else {
+            if(!effects[ID_Blur].isActive())
+                effects[ID_Blur].setActive(true);
+            effects[ID_Blur].setParam(value);
+        }
     } else {
         wxMessageDialog error(this, "Pas d'image ouverte");
         error.ShowModal();
@@ -126,15 +130,14 @@ void MyPanel::Negative(){
 
 }
 
-void MyPanel::Threshold(){
+void MyPanel::Threshold(int value){
     if(m_image){
-        if(effects[ID_Threshold].toggle()){
-            MyThresholdDialog *dlg = new MyThresholdDialog(this, -1, wxT("Seuillage"), wxDefaultPosition, wxSize(210,140)) ;
-            int process = dlg->ShowModal();
-            if(process == wxID_OK){
-                effects[ID_Threshold].setParam(dlg->m_threshold->GetValue());
-                delete dlg;
-            }
+        if(value == -1){
+            effects[ID_Threshold].setActive(false);
+        } else {
+            if(!effects[ID_Threshold].isActive())
+                effects[ID_Threshold].setActive(true);
+            effects[ID_Threshold].setParam(value);
         }
     }
     else {
@@ -143,10 +146,15 @@ void MyPanel::Threshold(){
     }
 }
 
-void MyPanel::Posterize(){
+void MyPanel::Posterize(int value){
     if(m_image){
-        effects[ID_Posterize].setParam(2);
-        effects[ID_Posterize].toggle();
+        if(value == -1){
+            effects[ID_Posterize].setActive(false);
+        } else {
+            if(!effects[ID_Posterize].isActive())
+                effects[ID_Posterize].setActive(true);
+            effects[ID_Posterize].setParam(value);
+        }
     } else {
         wxMessageDialog error(this, "Pas d'image ouverte");
         error.ShowModal();
@@ -185,17 +193,23 @@ void MyPanel::showStream(wxCommandEvent& evt){
 }
 
 void MyPanel::generatePalette(int nb_colors){
-    deleteThread();
+    if(m_image){
+        if(nb_colors == -1){
+            effects[ID_Quantization].setActive(false);
+        } else {
+            deleteThread();
 
-    if(processing_palette){
-        delete processing_palette;
-        processing_palette = nullptr;
+            if(processing_palette){
+                delete processing_palette;
+                processing_palette = nullptr;
+            }
+            effects[ID_Quantization].setParam(nb_colors);
+            palette_thread = new GeneratePaletteThread(this, buffer, processing_palette, nb_colors);
+
+            palette_thread->Create();
+            palette_thread->Run();
+        }
     }
-    effects[ID_Quantization].setParam(nb_colors);
-    palette_thread = new GeneratePaletteThread(this, buffer, processing_palette, nb_colors);
-
-    palette_thread->Create();
-    palette_thread->Run();
 }
 void MyPanel::paletteGenerated(wxCommandEvent& evt){
 

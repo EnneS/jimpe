@@ -12,7 +12,7 @@ MyImage::~MyImage()
 }
 
 void MyImage::Blur(int amount){
-    int kernel_size = amount*2 - 1;
+    int kernel_size = amount*2 + 1;
     cv::Mat* img = image.GetFront();
     cv::Mat tmp;
 

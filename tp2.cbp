@@ -53,6 +53,8 @@
 			<Add option="`wx-config --libs`" />
 			<Add option="`pkg-config --libs opencv`" />
 		</Linker>
+		<Unit filename="BlurPanel.cpp" />
+		<Unit filename="BlurPanel.h" />
 		<Unit filename="DoubleBuffer.cpp" />
 		<Unit filename="DoubleBuffer.h" />
 		<Unit filename="GeneratePaletteThread.cpp" />
@@ -71,10 +73,14 @@
 		<Unit filename="MyRotateDialog.h" />
 		<Unit filename="MyThresholdDialog.cpp" />
 		<Unit filename="MyThresholdDialog.h" />
+		<Unit filename="PosterizePanel.cpp" />
+		<Unit filename="PosterizePanel.h" />
 		<Unit filename="QuantizationPanel.cpp" />
 		<Unit filename="QuantizationPanel.h" />
 		<Unit filename="RotatePanel.cpp" />
 		<Unit filename="RotatePanel.h" />
+		<Unit filename="ThresholdPanel.cpp" />
+		<Unit filename="ThresholdPanel.h" />
 		<Unit filename="VideoStream.cpp" />
 		<Unit filename="VideoStream.h" />
 		<Unit filename="oldFunctions.cpp" />
